@@ -1,6 +1,6 @@
 # An Advanced Course Registration System
 
-## Course Searching and Registering Tool
+## Brief Introduction to This System
 
 Available Functions of This System:
 - Researching a course in the course lists
@@ -17,11 +17,12 @@ university. Third, I found it possible to make some improvements for the course 
 universities.</p>
 
 ## User Stories
-- As a user, I want to be able to search specific courses of my interests in the course list.
-- As a user, I want to be able to check, for the course I am interested, whether there are remaining available seats 
+- As a staff user, I want to be able to add a course to the universityCourseList.
+- As a staff user, I want to be able to remove a course from the universityCourseList.
+- As a student user, I want to be able to search specific courses of my interests in the course list.
+- As a student user, I want to be able to check, for the course I am interested, whether there are remaining available seats 
 for me.
-- As a user, I want to be able to register a course (add a course to the registered course list), if there are
+- As a student user, I want to be able to register a course (add a course to the registered course list), if there are
 remaining available seats. 
-- As a user, I want to be able to view all my registered courses (view the courses in the registered courses list).
-- As a user, I want to be able to view the number of all my registered courses and the total credits.
-- As a user, I want to be able to drop a course from my registered courses list.
+- As a student user, I want to be able to view all the names of the courses in my registered courses.
+- As a student user, I want to be able to drop a course from my registered courses list.
