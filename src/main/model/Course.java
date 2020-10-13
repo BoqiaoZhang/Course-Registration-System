@@ -9,7 +9,7 @@ public class Course {
                                               //               false otherwise
 
     //REQUIRES: courseName(cn) must have non-zero length;
-    //          sr must be equal to gsr+rsr;
+    //          num must be greater than zero
     //          the new course should be unique (either courseName or
     //          courseNumber is distinctive from these two of any other courses)
     //EFFECTS: construct a course based on the given information and initialize seatsRegistered to 0, isFull to false.

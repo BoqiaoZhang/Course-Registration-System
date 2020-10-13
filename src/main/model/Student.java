@@ -30,8 +30,7 @@ public class Student {
         return this.registeredCourses;
     }
 
-    //REQUIRES: The parameter University u must have the same name as the field universityName
-    //EFFECTS:  Return ture if the course c is in the university course list; otherwise return false
+    //EFFECTS:  Return ture if a course (represented as str) is in the university course list; otherwise return false
     public boolean searchCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         for (Course cou : courseList) {
@@ -43,8 +42,7 @@ public class Student {
         return false;
     }
 
-    //REQUIRES: The parameter University u must have the same name as the field universityName ;
-    //          The Course c must be in the universityCourseList of University u.
+    //REQUIRES: The Course (represented as str) must be in the universityCourseList of University uni.
     //EFFECTS:  Return true if there are available seats; otherwise false
     public boolean checkSeats(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
@@ -59,10 +57,11 @@ public class Student {
         return false;
     }
 
-    //REQUIRES: The parameter Course c must be searched in advance and return true in searchCourse method
-    //MODIFY: this, Course c
-    //EFFECTS: add Course c to the registeredCourses;
-    //         call havingNewRegistration method to change Course c (more details
+    //REQUIRES: The Course(represented as str) must be searched in advance and return true in searchCourse method;
+    //          The course(represented as str) must be checked seats first and return true in checkSeats method.
+    //MODIFY: this, Course (represented as str)
+    //EFFECTS: add Course(represented as str)to the registeredCourses;
+    //         change Course information (see more details
     //         in the specification of havingNewRegistration)
     public void registerCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
@@ -77,9 +76,9 @@ public class Student {
 
 
     //REQUIRES: Course c should be in the current registeredCourses list
-    //MODIFY: this, Course c
-    //EFFECTS: remove Course c to the registeredCourses;
-    //         call havingNewDrop method to change Course c (more details
+    //MODIFY: this, Course(represented as str)
+    //EFFECTS: remove Course(represented as str) to the registeredCourses;
+    //         change Course information (more details
     //         in the specification of havingNewDrop)
     public void dropCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();

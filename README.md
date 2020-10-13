@@ -1,4 +1,4 @@
-# An Advanced Course Registration System
+# A Course Registration System
 
 ## Brief Introduction to This System
 
