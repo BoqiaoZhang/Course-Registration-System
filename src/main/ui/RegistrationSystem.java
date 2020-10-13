@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class RegistrationSystem {
     private University uni;
-    private Scanner input1;
-    private Scanner input2;
-    private Scanner input3;
+    private final Scanner input1;
+    private final Scanner input2;
+    private final Scanner input3;
 
     //EFFECTS: instantiate the three possible inputs and run the Registration system
     public RegistrationSystem() {
@@ -24,9 +24,8 @@ public class RegistrationSystem {
 
     //EFFECTS: process the user command about the university they are in
     private void universityChoose() {
-        String command = null;
         universityMenu();
-        command = input1.next();
+        String command = input1.next();
         uni = new University(command);
         login();
     }
@@ -38,7 +37,7 @@ public class RegistrationSystem {
 
     //EFFECTS: process login command, separating users into two groups, student and university staff.
     public void login() {
-        String command = null;
+        String command;
         loginDisplayMenu();
         command = input1.next();
 
@@ -47,8 +46,8 @@ public class RegistrationSystem {
 
     //EFFECTS: process student login command
     public void studentLogin() {
-        String command1 = null;
-        String command2 = null;
+        String command1;
+        String command2;
         bothLoginDisplayMenu();
         command1 = input1.next();
         command2 = input2.next();
@@ -59,8 +58,8 @@ public class RegistrationSystem {
 
     //EFFECTS: process staff login command
     public void staffLogin() {
-        String command1 = null;
-        String command2 = null;
+        String command1;
+        String command2;
         bothLoginDisplayMenu();
         command1 = input1.next();
         command2 = input2.next();
@@ -72,7 +71,7 @@ public class RegistrationSystem {
     //EFFECTS: run the staff system
     private void staffSystem(UniversityStaff staff) {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         while (keepGoing) {
             staffAddingRemovingMenu();
@@ -97,9 +96,9 @@ public class RegistrationSystem {
 
     //EFFECTS: add a course to the university course list
     private void addingSystem(UniversityStaff staff) {
-        String command1 = null;
-        String command2 = null;
-        String command3 = null;
+        String command1;
+        String command2;
+        String command3;
         System.out.println("Please provide the information about course name, course number and total available seats");
         command1 = input1.next();
         command2 = input2.next();
@@ -110,8 +109,8 @@ public class RegistrationSystem {
 
     //EFFECTS:remove a course from the current university course list
     private void removingSystem(UniversityStaff staff) {
-        String command1 = null;
-        String command2 = null;
+        String command1;
+        String command2;
         System.out.println("Please provide the course name and course number of the course you want to remove.");
         command1 = input1.next();
         command2 = input2.next();
@@ -161,7 +160,7 @@ public class RegistrationSystem {
     //EFFECTS: run the student registration system
     private void studentRegistrationSystem(Student s) {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         while (keepGoing) {
             studentRegistrationDisplayMenu();
@@ -214,8 +213,8 @@ public class RegistrationSystem {
 
     //EFFECTS: make a searching in the university course list
     void processSearchingCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
+        String command;
+        studentOperationDisplayMenu();
         command = input1.next();
         if (s.searchCourse(uni, command)) {
             System.out.println("The course is available.");
@@ -227,8 +226,8 @@ public class RegistrationSystem {
     //REQUIRES: Before checking seats, a student must first search the course of interest
     //EFFECTS:check the available seats for a course
     void processCheckingSeatsCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
+        String command;
+        studentOperationDisplayMenu();
         command = input1.next();
         if (s.checkSeats(uni, command)) {
             System.out.println("There are available seats. You can register this course now.");
@@ -240,8 +239,8 @@ public class RegistrationSystem {
     //REQUIRES: Only when the course in the university list, can a student make a registration for this course.
     //EFFECTS: register a course
     void processRegisterCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
+        String command;
+        studentOperationDisplayMenu();
         command = input1.next();
         s.registerCourse(uni, command);
         System.out.println("The course has been successfully registered.");
@@ -250,15 +249,15 @@ public class RegistrationSystem {
     //REQUIRES: The course of interest must be in the current registered list
     //EFFECTS: drop a course
     void processDropCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
+        String command;
+        studentOperationDisplayMenu();
         command = input1.next();
         s.dropCourse(uni, command);
         System.out.println("The course has been successfully dropped.");
     }
 
     //EFFECTS: display a general instruction about typing the course information
-    void studentOperationDisplayMenu(Student s) {
+    void studentOperationDisplayMenu() {
         String form = "in the form of CourseNameCourseNumber (e.g. MATH100), without white space.";
         System.out.println("\tPlease type the course information here, " + form);
     }
