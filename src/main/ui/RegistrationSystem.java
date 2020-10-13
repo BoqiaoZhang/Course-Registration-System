@@ -126,9 +126,9 @@ public class RegistrationSystem {
 
     // EFFECTS: displays menu of options to user
     private void loginDisplayMenu() {
-        System.out.println("\nSelect from:");
-        System.out.println("\tStudent");
-        System.out.println("\tUniversityStaff");
+        System.out.println("\nAre you a student or university staff? Please press s or u for selection:");
+        System.out.println("\ts -> Student");
+        System.out.println("\tu -> UniversityStaff");
     }
 
     private void bothloginDisplayMenu() {
@@ -141,9 +141,9 @@ public class RegistrationSystem {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processTypeCommand(String command) {
-        if (command.equals("Student")) {
+        if (command.equals("s")) {
             studentLogin();
-        } else if (command.equals("UniversityStaff")) {
+        } else if (command.equals("u")) {
             staffLogin();
         } else {
             System.out.println("Selection not valid...");
@@ -160,11 +160,11 @@ public class RegistrationSystem {
 
             if (command.equals("l")) {
                 keepGoing = false;
-                System.out.println("Logged out!");
             } else {
                 processStudentOperationCommand(command, s);
             }
         }
+        System.out.println("Logged out!");
     }
 
     private void studentRegistrationDisplayMenu() {
@@ -182,13 +182,13 @@ public class RegistrationSystem {
     // EFFECTS: processes user command
     private void processStudentOperationCommand(String command, Student s) {
         if (command.equals("s")) {
-            doSearchCommand(s);
+            processSearchingCommand(s);
         } else if (command.equals("c")) {
-            studentOperationDisplayMenu(s);        //Remember:Similarly, we need "doCheckSeats" method
+            processCheckingSeatsCommand(s);        //Remember:Similarly, we need "doCheckSeats" method
         } else if (command.equals("r")) {
-            studentOperationDisplayMenu(s);        //Similarly
+            processRegisterCommand(s);        //Similarly
         } else if (command.equals("d")) {
-            studentOperationDisplayMenu(s);        //Similarly
+            processDropCommand(s);        //Similarly
         } else if (command.equals("v")) {
             System.out.println(s.viewAllRegisteredCourses());     //Similarly
         } else if (command.equals("b")) {
@@ -202,14 +202,22 @@ public class RegistrationSystem {
         String command = null;
         studentOperationDisplayMenu(s);
         command = input1.next();
-        s.searchCourse(uni, command);
+        if (s.searchCourse(uni, command)) {
+            System.out.println("The course is available.");
+        } else {
+            System.out.println("Sorry, the course is not found.");
+        }
     }
 
     void processCheckingSeatsCommand(Student s) {
         String command = null;
         studentOperationDisplayMenu(s);
         command = input1.next();
-        s.checkSeats(uni, command);
+        if (s.checkSeats(uni, command)) {
+            System.out.println("There are available seats. You can register this course now.");
+        } else {
+            System.out.println("Sorry, this course is full.");
+        }
     }
 
     void processRegisterCommand(Student s) {
@@ -217,6 +225,7 @@ public class RegistrationSystem {
         studentOperationDisplayMenu(s);
         command = input1.next();
         s.registerCourse(uni, command);
+        System.out.println("The course has been successfully registered.");
     }
 
     void processDropCommand(Student s) {
@@ -224,39 +233,11 @@ public class RegistrationSystem {
         studentOperationDisplayMenu(s);
         command = input1.next();
         s.dropCourse(uni, command);
+        System.out.println("The course has been successfully dropped.");
     }
 
 
     void studentOperationDisplayMenu(Student s) {
         System.out.println("\tplease type the course name here");
     }
-
-    void doSearchCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
-        command = input1.next();
-        s.searchCourse(uni, command);
-    }
-
-    void doCheckSeatsCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
-        command = input1.next();
-        s.checkSeats(uni, command);
-    }
-
-    void doRegisterCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
-        command = input1.next();
-        s.registerCourse(uni, command);
-    }
-
-    void doDropCommand(Student s) {
-        String command = null;
-        studentOperationDisplayMenu(s);
-        command = input1.next();
-        s.dropCourse(uni, command);
-    }
-
 }
