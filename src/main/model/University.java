@@ -31,7 +31,7 @@ public class University {
     //EFFECTS: remove a course from the current universityCourseList of
     public void removeCourse(Course c) {}
 
-
+    //EFFECTS: return true if the Course c is in the UniversityCourse list; false otherwise
     public boolean searching(Course c) {
         return false;   //stub
     }
