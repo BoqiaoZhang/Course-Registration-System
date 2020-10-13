@@ -34,7 +34,7 @@ public class Student {
     public boolean searchCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         for (Course cou : courseList) {
-            String courseCode = cou.getCourseName() + Integer.toString(cou.getCourseNumber());
+            String courseCode = cou.getCourseName() + (cou.getCourseNumber());
             if (str.equals(courseCode)) {
                 return true;
             }
@@ -47,7 +47,7 @@ public class Student {
     public boolean checkSeats(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         for (Course cou : courseList) {
-            String courseCode = cou.getCourseName() + Integer.toString(cou.getCourseNumber());
+            String courseCode = cou.getCourseName() + (cou.getCourseNumber());
             if (str.equals(courseCode)) {
                 if (!cou.getIsFull()) {
                     return true;
@@ -66,7 +66,7 @@ public class Student {
     public void registerCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         for (Course cou : courseList) {
-            String courseCode = cou.getCourseName() + Integer.toString(cou.getCourseNumber());
+            String courseCode = cou.getCourseName() + (cou.getCourseNumber());
             if (str.equals(courseCode)) {
                 cou.havingNewRegistration();
                 this.registeredCourses.add(cou);
@@ -83,7 +83,7 @@ public class Student {
     public void dropCourse(University uni, String str) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         for (Course cou : courseList) {
-            String courseCode = cou.getCourseName() + Integer.toString(cou.getCourseNumber());
+            String courseCode = cou.getCourseName() + (cou.getCourseNumber());
             if (str.equals(courseCode)) {
                 cou.havingNewDrop();
                 this.registeredCourses.remove(cou);
@@ -101,7 +101,7 @@ public class Student {
             String courseCode = c.getCourseName() + c.getCourseNumber();
             return "Your registered courses include: " + courseCode;
         } else {
-            String result = "";
+            String result;
             Course c = this.registeredCourses.get(0);
             String courseCode = c.getCourseName() + c.getCourseNumber();
             result = "Your registered courses include: " + courseCode;
