@@ -38,20 +38,20 @@ class CourseTest {
     @Test
     void testHavingNewDrop() {
         assertEquals(0,c2.getSeatsRegistered());
-        assertEquals(150,c1.getSeatsRemaining());
+        assertEquals(150,c2.getSeatsRemaining());
 
         for(int i = 0; i < 100; i++) {
             c2.havingNewRegistration();
         }
         assertEquals(100,c2.getSeatsRegistered());
-        assertEquals(50,c1.getSeatsRemaining());
+        assertEquals(50,c2.getSeatsRemaining());
 
         c2.havingNewDrop();
         assertEquals(99,c2.getSeatsRegistered());
-        assertEquals(51,c1.getSeatsRemaining());
+        assertEquals(51,c2.getSeatsRemaining());
 
         c2.havingNewDrop();
         assertEquals(98,c2.getSeatsRegistered());
-        assertEquals(52,c1.getSeatsRemaining());
+        assertEquals(52,c2.getSeatsRemaining());
     }
 }

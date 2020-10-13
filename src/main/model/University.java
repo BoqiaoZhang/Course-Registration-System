@@ -24,15 +24,15 @@ public class University {
     //REQUIRES: Course c should not be in the current university course list of
     //MODIFY: this
     //EFFECTS: add a course to the universityCourseList of
-    public void addNewCourse(Course c) {}
+    public void newCourseAdded(Course c) {
+        this.universityCourseList.add(c);
+    }
 
     //REQUIRES: the course c (parameter) must be in the current university course list
     //MODIFY: this
     //EFFECTS: remove a course from the current universityCourseList of
-    public void removeCourse(Course c) {}
-
-    //EFFECTS: return true if the Course c is in the UniversityCourse list; false otherwise
-    public boolean searching(Course c) {
-        return false;   //stub
+    public void courseRemoved(Course c) {
+        this.universityCourseList.remove(c);
     }
+
 }

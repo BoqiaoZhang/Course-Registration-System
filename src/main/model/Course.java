@@ -47,13 +47,24 @@ public class Course {
     //MODIFY: this
     //EFFECTS: reducing 1 to seatsRemaining;
     //         adding 1 to seatsRegistered.
-    public void havingNewRegistration() {}
+    public void havingNewRegistration() {
+        this.seatsRegistered = seatsRegistered + 1;
+        this.seatsRemaining = seatsRemaining - 1;
+        if (seatsRemaining == 0) {
+            isFull = true;
+        }
+    }
 
     //REQUIRES: the seatsRegistered must be greater than 0.
     //MODIFY: this
     //EFFECTS: adding 1 to seatsRemaining;
     //         reducing 1 to seatsRegistered.
-    public void havingNewDrop() {}
-
-
+    public void havingNewDrop() {
+        boolean fullOrNot = this.isFull;
+        this.seatsRemaining = seatsRemaining + 1;
+        this.seatsRegistered = seatsRegistered - 1;
+        if (fullOrNot) {
+            this.isFull = false;
+        }
+    }
 }

@@ -4,25 +4,34 @@ import model.Course;
 import model.Student;
 import model.University;
 import model.UniversityStaff;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem {
-    private String inputName;
-    private int inputNumber;
-    private String inputUniversityName;
     private University uni;
-    private UniversityStaff staff;
-    private Student stu;
-    private Course c1;
     private Scanner input1;
     private Scanner input2;
     private Scanner input3;
+
 
     public RegistrationSystem() {
         input1 = new Scanner(System.in);
         input2 = new Scanner(System.in);
         input3 = new Scanner(System.in);
+        universityChoose();
+    }
+
+    private void universityChoose() {
+        String command = null;
+        universityMenu();
+        command = input1.next();
+        uni = new University(command);
         login();
+    }
+
+    private void universityMenu() {
+        System.out.println("\tWhich university are you from?");
     }
 
     public void login() {
@@ -36,18 +45,83 @@ public class RegistrationSystem {
     public void studentLogin() {
         String command1 = null;
         String command2 = null;
-        String command3 = null;
-        studentLoginDisplayMenu();
+        bothloginDisplayMenu();
         command1 = input1.next();
         command2 = input2.next();
-        command3 = input3.next();
-        Student s = new Student(command1,Integer.parseInt(command2),command3);
+        Student s = new Student(command1, Integer.parseInt(command2));
 
         studentRegistrationSystem(s);
     }
 
     public void staffLogin() {
-        System.out.println("Staff,haha");
+        String command1 = null;
+        String command2 = null;
+        bothloginDisplayMenu();
+        command1 = input1.next();
+        command2 = input2.next();
+        UniversityStaff staff = new UniversityStaff(command1, Integer.parseInt(command2));
+
+        staffSystem(staff);
+    }
+
+    private void staffSystem(UniversityStaff staff) {
+        boolean keepGoing = true;
+        String command = null;
+
+        while (keepGoing) {
+            staffAddingRemovingMenu();
+            command = input1.next();
+            command = command.toLowerCase();
+            if (command.equals("l")) {
+                keepGoing = false;
+                System.out.println("Logged out!");
+            } else {
+                if (command.equals("a")) {
+                    addingSystem(staff);
+                } else if (command.equals("r")) {
+                    removingSystem(staff);
+                } else if (command.equals("b")) {
+                    login();
+                } else {
+                    System.out.println("Selection not valid...");
+                }
+            }
+        }
+    }
+
+    private void addingSystem(UniversityStaff staff) {
+        String command1 = null;
+        String command2 = null;
+        String command3 = null;
+        System.out.println("Please provide the information about course name, course number and total available seats");
+        command1 = input1.next();
+        command2 = input2.next();
+        command3 = input3.next();
+        Course cou = new Course(command1, Integer.parseInt(command2), Integer.parseInt(command3));
+        staff.addNewCourse(uni, cou);
+    }
+
+    private void removingSystem(UniversityStaff staff) {
+        String command1 = null;
+        String command2 = null;
+        System.out.println("Please provide the course name and course number of the course you want to remove.");
+        command1 = input1.next();
+        command2 = input2.next();
+
+        ArrayList<Course> courseList = uni.getUniversityCourseList();
+        for (Course cou : courseList) {
+            if ((cou.getCourseName().equals(command1)) && (Integer.parseInt(command2) == cou.getCourseNumber())) {
+                courseList.remove(cou);
+            }
+        }
+    }
+
+    private void staffAddingRemovingMenu() {
+        System.out.println("\nDo you want to add or remove a course");
+        System.out.println("\ta -> add");
+        System.out.println("\tr -> remove");
+        System.out.println("\tl -> log out");
+        System.out.println("\tb -> back to the log in page");
     }
 
     // EFFECTS: displays menu of options to user
@@ -57,19 +131,12 @@ public class RegistrationSystem {
         System.out.println("\tUniversityStaff");
     }
 
-    private void studentLoginDisplayMenu() {
+    private void bothloginDisplayMenu() {
         System.out.println("\nPlease fill in information");
         System.out.println("\tName");
-        System.out.println("\tStudent Number");
-        System.out.println("\tUniversity Name");
+        System.out.println("\tStudent/Staff Number");
     }
 
-    private void staffLoginDisplayMenu() {
-        System.out.println("\nPlease fill in information");
-        System.out.println("\tName");
-        System.out.println("\tStaff Number");
-        System.out.println("\tUniversity Name");
-    }
 
     // MODIFIES: this
     // EFFECTS: processes user command
@@ -84,34 +151,48 @@ public class RegistrationSystem {
     }
 
     private void studentRegistrationSystem(Student s) {
+        boolean keepGoing = true;
         String command = null;
-        studentRegistrationDisplayMenu();
-        command = input1.next();
-        processStudentOperationCommand(command,s);
+
+        while (keepGoing) {
+            studentRegistrationDisplayMenu();
+            command = input1.next();
+
+            if (command.equals("l")) {
+                keepGoing = false;
+                System.out.println("Logged out!");
+            } else {
+                processStudentOperationCommand(command, s);
+            }
+        }
     }
 
     private void studentRegistrationDisplayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\tsearch a course");
-        System.out.println("\tcheck seats for a course");
-        System.out.println("\tregister a course");
-        System.out.println("\tdrop a course");
-        System.out.println("\tview all registered courses");
+        System.out.println("\ts -> search a course");
+        System.out.println("\tc -> check seats for a course");
+        System.out.println("\tr -> register a course");
+        System.out.println("\td -> drop a course");
+        System.out.println("\tv -> view all registered courses");
+        System.out.println("\tl -> logout");
+        System.out.println("\tb -> back to the log in page");
     }
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processStudentOperationCommand(String command,Student s) {
-        if (command.equals("search a course")) {
-            studentSearchingDisplayMenu(s);
-        } else if (command.equals("check seats for a course")) {
-            studentCheckingSeatsDisplayMenu(s);
-        } else if (command.equals("register a course")) {
-            studentRegisterDisplayMenu(s);
-        } else if (command.equals("drop a course")) {
-            studentDropDisplayMenu(s);
-        } else if (command.equals("view all registered courses")) {
-            System.out.println(s.viewAllRegisteredCourses());
+    private void processStudentOperationCommand(String command, Student s) {
+        if (command.equals("s")) {
+            doSearchCommand(s);
+        } else if (command.equals("c")) {
+            studentOperationDisplayMenu(s);        //Remember:Similarly, we need "doCheckSeats" method
+        } else if (command.equals("r")) {
+            studentOperationDisplayMenu(s);        //Similarly
+        } else if (command.equals("d")) {
+            studentOperationDisplayMenu(s);        //Similarly
+        } else if (command.equals("v")) {
+            System.out.println(s.viewAllRegisteredCourses());     //Similarly
+        } else if (command.equals("b")) {
+            login();
         } else {
             System.out.println("Operation not valid...");
         }
@@ -119,24 +200,63 @@ public class RegistrationSystem {
 
     void processSearchingCommand(Student s) {
         String command = null;
-        studentSearchingDisplayMenu(s);
+        studentOperationDisplayMenu(s);
         command = input1.next();
-        s.searchCourse()
+        s.searchCourse(uni, command);
     }
 
-    void studentSearchingDisplayMenu(Student s) {
+    void processCheckingSeatsCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.checkSeats(uni, command);
+    }
+
+    void processRegisterCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.registerCourse(uni, command);
+    }
+
+    void processDropCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.dropCourse(uni, command);
+    }
+
+
+    void studentOperationDisplayMenu(Student s) {
         System.out.println("\tplease type the course name here");
     }
 
-    void studentCheckingSeatsDisplayMenu(Student s) {
-        System.out.println("\tplease type the course name here");
+    void doSearchCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.searchCourse(uni, command);
     }
 
-    void studentRegisterDisplayMenu(Student s) {
-        System.out.println("\tplease type the course name here");
+    void doCheckSeatsCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.checkSeats(uni, command);
     }
 
-    void studentDropDisplayMenu(Student s) {
-        System.out.println("\tplease type the course name here");
+    void doRegisterCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.registerCourse(uni, command);
     }
+
+    void doDropCommand(Student s) {
+        String command = null;
+        studentOperationDisplayMenu(s);
+        command = input1.next();
+        s.dropCourse(uni, command);
+    }
+
 }
