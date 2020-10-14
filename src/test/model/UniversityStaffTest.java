@@ -44,7 +44,7 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseNotLastRemoveFirst() {
+    void testRemoveCourseTrueNameTrueNumber() {
         assertEquals(0,u1.getUniversityCourseList().size());
 
         staff1.addNewCourse(u1,c1);
@@ -57,26 +57,36 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseNotLastRemoveNotFirst() {
+    void testRemoveCourseTrueNameFalseNumber() {
         assertEquals(0,u1.getUniversityCourseList().size());
 
         staff1.addNewCourse(u1,c1);
         staff2.addNewCourse(u1,c2);
 
-        staff2.removeCourse(u1,"SCIE","113");
-        assertEquals(1,u1.getUniversityCourseList().size());
-        assertFalse(u1.getUniversityCourseList().contains(c2));
+        staff2.removeCourse(u1,"SCIE","100000");
+        assertEquals(2,u1.getUniversityCourseList().size());
+        assertTrue(u1.getUniversityCourseList().contains(c2));
         assertTrue(u1.getUniversityCourseList().contains(c1));
     }
 
     @Test
-    void testRemoveCourseLast() {
+    void testRemoveCourseFalseNameTrueNumber() {
         assertEquals(0,u1.getUniversityCourseList().size());
         staff1.addNewCourse(u1,c2);
-        staff2.removeCourse(u1,"SCIE","113");
-        assertEquals(0,u1.getUniversityCourseList().size());
+        staff2.removeCourse(u1,"AABBCCDD","113");
+        assertEquals(1,u1.getUniversityCourseList().size());
         assertFalse(u1.getUniversityCourseList().contains(c1));
-        assertFalse(u1.getUniversityCourseList().contains(c2));
+        assertTrue(u1.getUniversityCourseList().contains(c2));
+    }
+
+    @Test
+    void testRemoveCourseFalseNameFalseNumber() {
+        assertEquals(0,u1.getUniversityCourseList().size());
+        staff1.addNewCourse(u1,c2);
+        staff2.removeCourse(u1,"AABBCCDD","1000");
+        assertEquals(1,u1.getUniversityCourseList().size());
+        assertFalse(u1.getUniversityCourseList().contains(c1));
+        assertTrue(u1.getUniversityCourseList().contains(c2));
     }
 
     @Test

@@ -38,9 +38,21 @@ public class StudentTest {
     }
 
     @Test
-    void testSearchCourseFalse() {
-        assertFalse(s2.searchCourse(u,"MATH100"));
-        assertFalse(s3.searchCourse(u,"CPSC121"));
+    void testSearchCourseFalseNameFalseNumber() {
+        assertFalse(s2.searchCourse(u, "MATH100"));
+        assertFalse(s3.searchCourse(u, "CPSC121"));
+    }
+
+    @Test
+    void testSearchCourseTrueNameFalseNumber() {
+        staff2.addNewCourse(u,c1);
+        assertFalse(s3.searchCourse(u,"CPSC100000"));
+    }
+
+    @Test
+    void testSearchCourseFalseNameTrueNumber() {
+        staff2.addNewCourse(u,c1);
+        assertFalse(s3.searchCourse(u,"AABB121"));
     }
 
     @Test
