@@ -44,7 +44,7 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseNonEmpty() {
+    void testRemoveCourseNonEmptyFirstRemoved() {
         assertEquals(0,u1.getUniversityCourseList().size());
 
         staff1.addNewCourse(u1,c1);
@@ -54,7 +54,19 @@ public class UniversityStaffTest {
         assertEquals(1,u1.getUniversityCourseList().size());
         assertFalse(u1.getUniversityCourseList().contains(c1));
         assertTrue(u1.getUniversityCourseList().contains(c2));
+    }
 
+    @Test
+    void testRemoveCourseNonEmptySecondRemoved() {
+        assertEquals(0,u1.getUniversityCourseList().size());
+
+        staff1.addNewCourse(u1,c1);
+        staff2.addNewCourse(u1,c2);
+
+        staff2.removeCourse(u1,"SCIE","113");
+        assertEquals(1,u1.getUniversityCourseList().size());
+        assertFalse(u1.getUniversityCourseList().contains(c2));
+        assertTrue(u1.getUniversityCourseList().contains(c1));
     }
 
     @Test

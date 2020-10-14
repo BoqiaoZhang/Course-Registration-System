@@ -18,7 +18,7 @@ universities.</p>
 
 ## User Stories
 - As a staff user, I want to be able to add a course to the universityCourseList.
-- As a staff user, I want to be able to remove a course from the universityCourseList.
+- As a staff user, I want to be able to remove a course from the universityCourseList (for grading).
 - As a staff user, I want to be able to view all the courses that have been added to the university course list.
 - As a student user, I want to be able to search specific courses of my interests in the course list.
 - As a student user, I want to be able to check, for the course I am interested, whether there are remaining available 

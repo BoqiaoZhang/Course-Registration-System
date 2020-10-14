@@ -16,13 +16,13 @@ class CourseTest {
     void setup() {
         c1 = new Course("CPSC",110,310);
         c2 = new Course("CPSC",121,150);
-        c3 = new Course("CPSC",210,400);
+        c3 = new Course("CPSC",210,1);
         c4 = new Course("MATH",100,200);
         c5 = new Course("MATH",101,100);
     }
 
     @Test
-    void testHavingNewRegistration() {
+    void testHavingNewRegistrationNotFull() {
         assertEquals(0,c1.getSeatsRegistered());
         assertEquals(310,c1.getSeatsRemaining());
 
@@ -36,7 +36,18 @@ class CourseTest {
     }
 
     @Test
-    void testHavingNewDrop() {
+    void testHavingNewRegistrationFull() {
+        assertEquals(0,c3.getSeatsRegistered());
+        assertEquals(1,c3.getSeatsRemaining());
+
+        c3.havingNewRegistration();
+        assertEquals(1,c3.getSeatsRegistered());
+        assertEquals(0,c3.getSeatsRemaining());
+        assertTrue(c3.getIsFull());
+    }
+
+    @Test
+    void testHavingNewDropNotFull() {
         assertEquals(0,c2.getSeatsRegistered());
         assertEquals(150,c2.getSeatsRemaining());
 
@@ -53,5 +64,23 @@ class CourseTest {
         c2.havingNewDrop();
         assertEquals(98,c2.getSeatsRegistered());
         assertEquals(52,c2.getSeatsRemaining());
+    }
+
+    @Test
+    void testHavingNewDropFull() {
+        assertEquals(0,c2.getSeatsRegistered());
+        assertEquals(150,c2.getSeatsRemaining());
+
+        for(int i = 0; i < 150; i++) {
+            c2.havingNewRegistration();
+        }
+        assertEquals(150,c2.getSeatsRegistered());
+        assertEquals(0,c2.getSeatsRemaining());
+        assertTrue(c2.getIsFull());
+
+        c2.havingNewDrop();
+        assertEquals(149,c2.getSeatsRegistered());
+        assertEquals(1,c2.getSeatsRemaining());
+        assertFalse(c2.getIsFull());
     }
 }
