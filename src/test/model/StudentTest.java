@@ -71,13 +71,31 @@ public class StudentTest {
     }
 
     @Test
-    void testDropCourse() {
+    void testDropCourseOne() {
         assertEquals(0,s3.getRegisteredCourses().size());
         staff1.addNewCourse(u,c2);
         s3.registerCourse(u,"MATH100");
         assertEquals(1,s3.getRegisteredCourses().size());
         assertTrue(s3.getRegisteredCourses().contains(c2));
 
+        s3.dropCourse(u,"MATH100");
+        assertEquals(0,s3.getRegisteredCourses().size());
+    }
+
+    @Test
+    void testDropCourseMultiple() {
+        assertEquals(0,s3.getRegisteredCourses().size());
+
+        staff1.addNewCourse(u,c2);
+        staff1.addNewCourse(u,c1);
+        s3.registerCourse(u,"MATH100");
+        s3.registerCourse(u,"CPSC121");
+        assertEquals(2,s3.getRegisteredCourses().size());
+        assertTrue(s3.getRegisteredCourses().contains(c2));
+        assertTrue(s3.getRegisteredCourses().contains(c1));
+
+        s3.dropCourse(u,"CPSC121");
+        assertEquals(1,s3.getRegisteredCourses().size());
         s3.dropCourse(u,"MATH100");
         assertEquals(0,s3.getRegisteredCourses().size());
     }

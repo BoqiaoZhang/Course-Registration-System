@@ -17,14 +17,6 @@ public class Student {
         this.registeredCourses = new ArrayList<Course>();
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getStudentNumber() {
-        return this.studentNumber;
-    }
-
 
     public ArrayList<Course> getRegisteredCourses() {
         return this.registeredCourses;

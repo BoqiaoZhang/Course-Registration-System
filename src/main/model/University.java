@@ -13,9 +13,6 @@ public class University {
         universityCourseList = new ArrayList<Course>();
     }
 
-    public String getName() {
-        return this.name;
-    }
 
     public ArrayList<Course> getUniversityCourseList() {
         return this.universityCourseList;

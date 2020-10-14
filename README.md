@@ -2,10 +2,11 @@
 
 ## Brief Introduction to This System
 
-Available Functions of This System:
-- Researching a course in the course lists
-- Checking whether there are available seats for a course
-- Registering or dropping the course 
+The Main Functions of This System:
+- As staff, setting the university course list as staff
+- As students, researching a course in the course lists
+- As students, checking whether there are available seats for a course
+- As students, registering or dropping the course 
 
 This project is designed as a course registration system. The main functions of this system includes: searching a
 course, checking the remaining available seats and registering/dropping a course. These functions could well serve the 
@@ -17,13 +18,16 @@ university. Third, I found it possible to make some improvements for the course 
 universities.</p>
 
 ## User Stories
-- As a staff user, I want to be able to add a course to the universityCourseList.
-- As a staff user, I want to be able to remove a course from the universityCourseList (for grading).
-- As a staff user, I want to be able to view all the courses that have been added to the university course list.
-- As a student user, I want to be able to search specific courses of my interests in the course list.
+- As a staff user, I want to be able to add a course to the universityCourseList **(for grading please)**.
+- As a staff user, I want to be able to remove a course from the universityCourseList.
+- As a staff user, I want to be able to view all the courses that have been added to the 
+university course list .
+- As a student user, I want to be able to search specific courses of my interests 
+in the course list **(for grading please)**.
 - As a student user, I want to be able to check, for the course I am interested, whether there are remaining available 
 seats for me.
 - As a student user, I want to be able to register a course (add a course to the registered course list), if there are
-remaining available seats. 
-- As a student user, I want to be able to view all the names of the courses in my registered course list.
+remaining available seats **(for grading please)**. 
+- As a student user, I want to be able to view all the names of the courses in my 
+registered course list **(for grading please)**.
 - As a student user, I want to be able to drop a course from my registered course list.

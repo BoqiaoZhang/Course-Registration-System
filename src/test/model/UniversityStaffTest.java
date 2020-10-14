@@ -44,7 +44,7 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseNonEmptyFirstRemoved() {
+    void testRemoveCourseNotLastRemoveFirst() {
         assertEquals(0,u1.getUniversityCourseList().size());
 
         staff1.addNewCourse(u1,c1);
@@ -57,7 +57,7 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseNonEmptySecondRemoved() {
+    void testRemoveCourseNotLastRemoveNotFirst() {
         assertEquals(0,u1.getUniversityCourseList().size());
 
         staff1.addNewCourse(u1,c1);
@@ -70,7 +70,7 @@ public class UniversityStaffTest {
     }
 
     @Test
-    void testRemoveCourseEmpty() {
+    void testRemoveCourseLast() {
         assertEquals(0,u1.getUniversityCourseList().size());
         staff1.addNewCourse(u1,c2);
         staff2.removeCourse(u1,"SCIE","113");
