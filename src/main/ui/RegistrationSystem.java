@@ -5,10 +5,14 @@ import model.Student;
 import model.University;
 import model.UniversityStaff;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem {
+    //Reminder:i)   For this program each running, all the staff and students are regarded from the same university.
+    //         ii)  We are supposed to first login as staff to set tup the university course list,then login as students
+    //         iii) If we login multiple times, we need to logout the same times if we want to entirely stop running
+    //              this program (Similar as opening many tabs on Chrome and we need to close all tabs at the end).
+
     private University uni;
     private final Scanner input1;
     private final Scanner input2;
@@ -85,6 +89,8 @@ public class RegistrationSystem {
                     addingSystem(staff);
                 } else if (command.equals("r")) {
                     removingSystem(staff);
+                } else if (command.equals("v")) {
+                    System.out.println(staff.viewAllCourses(uni));
                 } else if (command.equals("b")) {
                     login();
                 } else {
@@ -99,7 +105,10 @@ public class RegistrationSystem {
         String command1;
         String command2;
         String command3;
-        System.out.println("Please provide the information about course name, course number and total available seats");
+        System.out.println("\nPlease provide the following information about the course you want to add:");
+        System.out.println("\tcourse name");
+        System.out.println("\tcourse number");
+        System.out.println("\ttotal seats available");
         command1 = input1.next();
         command2 = input2.next();
         command3 = input3.next();
@@ -111,23 +120,21 @@ public class RegistrationSystem {
     private void removingSystem(UniversityStaff staff) {
         String command1;
         String command2;
-        System.out.println("Please provide the course name and course number of the course you want to remove.");
+        System.out.println("\nPlease provide the following information about the course you want to remove:");
+        System.out.println("\tcourse name");
+        System.out.println("\tcourse number");
         command1 = input1.next();
         command2 = input2.next();
 
-        ArrayList<Course> courseList = uni.getUniversityCourseList();
-        for (Course cou : courseList) {
-            if ((cou.getCourseName().equals(command1)) && (Integer.parseInt(command2) == cou.getCourseNumber())) {
-                courseList.remove(cou);
-            }
-        }
+        staff.removeCourse(uni, command1, command2);
     }
 
     //EFFECTS: display the add/remove menu for university staff
     private void staffAddingRemovingMenu() {
-        System.out.println("\nDo you want to add or remove a course");
-        System.out.println("\ta -> add");
-        System.out.println("\tr -> remove");
+        System.out.println("\nPlease select one operation:");
+        System.out.println("\ta -> add a course");
+        System.out.println("\tr -> remove a course");
+        System.out.println("\tv -> view all the courses in the university course list");
         System.out.println("\tl -> log out");
         System.out.println("\tb -> back to the log in page");
     }
@@ -141,7 +148,7 @@ public class RegistrationSystem {
 
     //EFFECTS: display the instructions for users to provide their login information
     private void bothLoginDisplayMenu() {
-        System.out.println("\nLogin Page: Please type your name in the first line and your number in the second line");
+        System.out.println("\nLogin Page: Please provide the following information.");
         System.out.println("\tName");
         System.out.println("\tStudent/Staff Number");
     }
@@ -179,9 +186,6 @@ public class RegistrationSystem {
     //EFFECTS: display the student registration menu
     private void studentRegistrationDisplayMenu() {
         String confirm = "please confirm you have now registered the course by viewing your registered course list";
-        System.out.println("Important: Please first search a course and check seats before registration!");
-        System.out.println("Important: Please search a course before checking the seats!");
-        System.out.println("Important: If you want to drop a course, " + confirm);
         System.out.println("\nSelect from:");
         System.out.println("\ts -> search a course");
         System.out.println("\tc -> check seats for a course");
@@ -190,6 +194,9 @@ public class RegistrationSystem {
         System.out.println("\tv -> view all registered courses");
         System.out.println("\tl -> logout");
         System.out.println("\tb -> back to the log in page");
+        System.out.println("Important: Please first search a course and check seats before registration!");
+        System.out.println("Important: Please search a course before checking the seats!");
+        System.out.println("Important: If you want to drop a course, " + confirm);
     }
 
     // EFFECTS: processes student users' commands
@@ -197,13 +204,13 @@ public class RegistrationSystem {
         if (command.equals("s")) {
             processSearchingCommand(s);
         } else if (command.equals("c")) {
-            processCheckingSeatsCommand(s);        //Remember:Similarly, we need "doCheckSeats" method
+            processCheckingSeatsCommand(s);
         } else if (command.equals("r")) {
-            processRegisterCommand(s);        //Similarly
+            processRegisterCommand(s);
         } else if (command.equals("d")) {
-            processDropCommand(s);        //Similarly
+            processDropCommand(s);
         } else if (command.equals("v")) {
-            System.out.println(s.viewAllRegisteredCourses());     //Similarly
+            System.out.println(s.viewAllRegisteredCourses());
         } else if (command.equals("b")) {
             login();
         } else {
