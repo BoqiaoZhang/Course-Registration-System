@@ -14,9 +14,9 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        JsonReader reader = new JsonReader("./data/noSuchFile.Student.json");
         try {
-            University u = reader.read();
+            University u = reader.readUniversity();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -27,7 +27,7 @@ public class JsonReaderTest extends JsonTest{
     void testReaderEmptyWorkRoom() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyCourseList.json");
         try {
-            University u = reader.read();
+            University u = reader.readUniversity();
             assertEquals("McGill", u.getUniversityName());
             assertEquals(0, u.getUniversityCourseList().size());
         } catch (IOException e) {
@@ -39,7 +39,7 @@ public class JsonReaderTest extends JsonTest{
     void testReaderGeneralWorkRoom() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralCourseList.json");
         try {
-            University u = reader.read();
+            University u = reader.readUniversity();
             assertEquals("UBC", u.getUniversityName());
             List<Course> courses = u.getUniversityCourseList();
             assertEquals(2, courses.size());

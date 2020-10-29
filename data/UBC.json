@@ -1,0 +1,19 @@
+{
+     "name": "UBC",
+     "universityCourseList": [
+          {
+               "number": "110",
+               "seatsRemaining": "500",
+               "name": "CPSC",
+               "isFull": "false",
+               "seatsRegistered": "0"
+          },
+          {
+               "number": "100",
+               "seatsRemaining": "50",
+               "name": "MATH",
+               "isFull": "false",
+               "seatsRegistered": "0"
+          }
+     ]
+}

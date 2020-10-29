@@ -1,22 +1,33 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class Student {
+public class Student implements Writable {
     private String name;                             //The name of a student
-    private int studentNumber;                       //The unique student number of a student
     private ArrayList<Course> registeredCourses;     //The list of courses that have been registered by a student
+    private University uni;
 
     //REQUIRES: The student number(studentNum) must be unique (distinctive from that of all other students)
     //EFFECTS: The String name is set to the field called name;
     //         The studentNum is set to the field called studentNumber;
     //         The filed registeredCourses is initialized as a new empty ArrayList<Course>
-    public Student(String name, int studentNum) {
+    public Student(String name, University uni) {
         this.name = name;
-        this.studentNumber = studentNum;
+        this.uni = uni;
         this.registeredCourses = new ArrayList<Course>();
     }
 
+    public University getUniversity() {
+        return this.uni;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
     public ArrayList<Course> getRegisteredCourses() {
         return this.registeredCourses;
@@ -104,5 +115,25 @@ public class Student {
             }
             return result;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("University",uni);
+        json.put("registeredCourseList", coursesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c : this.registeredCourses) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }

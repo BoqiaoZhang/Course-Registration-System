@@ -15,12 +15,14 @@ public class StudentTest {
     private UniversityStaff staff1;
     private UniversityStaff staff2;
     private University u;
+    private University uni;
 
     @BeforeEach
     void setup() {
-        s1 = new Student("Bill",12345678);
-        s2 = new Student("Steven",11335577);
-        s3 = new Student("Matt",246810);
+        uni = new University("UBC");
+        s1 = new Student("Bill",uni);
+        s2 = new Student("Steven",uni);
+        s3 = new Student("Matt",uni);
         c1 = new Course("CPSC",121,150);
         c2 = new Course("MATH",100,200);
         c3 = new Course("EOSC",103,50);

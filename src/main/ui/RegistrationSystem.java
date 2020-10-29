@@ -4,7 +4,11 @@ import model.Course;
 import model.Student;
 import model.University;
 import model.UniversityStaff;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class RegistrationSystem {
@@ -13,16 +17,27 @@ public class RegistrationSystem {
     //         iii) If we login multiple times, we need to logout the same times if we want to entirely stop running
     //              this program (Similar as opening many tabs on Chrome and we need to close all tabs at the end).
 
+    private Student stu;
     private University uni;
     private final Scanner input1;
     private final Scanner input2;
     private final Scanner input3;
+    private JsonWriter universityJsonWriter;
+    private JsonReader universityJsonReader;
+    private JsonWriter studentJsonWriter;
+    private JsonReader studentJsonReader;
+    private static final String UNIVERSITY_JSON_STORE = "./data/UBC.json";
+    private static final String STUDENT_JSON_STORE = "./data/Student.json";
 
     //EFFECTS: instantiate the three possible inputs and run the Registration system
     public RegistrationSystem() {
         input1 = new Scanner(System.in);
         input2 = new Scanner(System.in);
         input3 = new Scanner(System.in);
+        universityJsonWriter = new JsonWriter(UNIVERSITY_JSON_STORE);
+        universityJsonReader = new JsonReader(UNIVERSITY_JSON_STORE);
+        studentJsonWriter = new JsonWriter(STUDENT_JSON_STORE);
+        studentJsonReader = new JsonReader(STUDENT_JSON_STORE);
         universityChoose();
     }
 
@@ -55,9 +70,9 @@ public class RegistrationSystem {
         bothLoginDisplayMenu();
         command1 = input1.next();
         command2 = input2.next();
-        Student s = new Student(command1, Integer.parseInt(command2));
+        stu = new Student(command1,uni);
 
-        studentRegistrationSystem(s);
+        studentRegistrationSystem(stu);
     }
 
     //EFFECTS: process staff login command
@@ -73,7 +88,8 @@ public class RegistrationSystem {
     }
 
     //EFFECTS: run the staff system
-    private void staffSystem(UniversityStaff staff) {
+    @SuppressWarnings("checkstyle:MethodLength")
+    private void staffSystem(UniversityStaff staff) {        //over max lines!!!!!!!!!!!!!!1
         boolean keepGoing = true;
         String command;
 
@@ -81,7 +97,7 @@ public class RegistrationSystem {
             staffAddingRemovingMenu();
             command = input1.next();
             command = command.toLowerCase();
-            if (command.equals("l")) {
+            if (command.equals("q")) {
                 keepGoing = false;
                 System.out.println("Logged out!");
             } else {
@@ -93,6 +109,10 @@ public class RegistrationSystem {
                     System.out.println(staff.viewAllCourses(uni));
                 } else if (command.equals("b")) {
                     login();
+                } else if (command.equals("s")) {
+                    saveUniversityCourseList();
+                } else if (command.equals("l")) {
+                    loadUniversityCourseList();
                 } else {
                     System.out.println("Selection not valid...");
                 }
@@ -135,7 +155,9 @@ public class RegistrationSystem {
         System.out.println("\ta -> add a course");
         System.out.println("\tr -> remove a course");
         System.out.println("\tv -> view all the courses in the university course list");
-        System.out.println("\tl -> log out");
+        System.out.println("\ts -> save the current course list");
+        System.out.println("\tl -> load the current course list");
+        System.out.println("\tq -> log out");
         System.out.println("\tb -> back to the log in page");
     }
 
@@ -174,7 +196,7 @@ public class RegistrationSystem {
             command = input1.next();
             command = command.toLowerCase();
 
-            if (command.equals("l")) {
+            if (command.equals("quit")) {
                 keepGoing = false;
             } else {
                 processStudentOperationCommand(command, s);
@@ -187,13 +209,15 @@ public class RegistrationSystem {
     private void studentRegistrationDisplayMenu() {
         String confirm = "please confirm you have now registered the course by viewing your registered course list";
         System.out.println("\nSelect from:");
-        System.out.println("\ts -> search a course");
-        System.out.println("\tc -> check seats for a course");
-        System.out.println("\tr -> register a course");
-        System.out.println("\td -> drop a course");
-        System.out.println("\tv -> view all registered courses");
-        System.out.println("\tl -> logout");
-        System.out.println("\tb -> back to the log in page");
+        System.out.println("\tsearch -> search for a course");
+        System.out.println("\tcheck -> check seats for a course");
+        System.out.println("\tregister -> register a course");
+        System.out.println("\tdrop -> drop a course");
+        System.out.println("\tview -> view all registered courses");
+        System.out.println("\tquit -> logout");
+        System.out.println("\tback -> back to the log in page");
+        System.out.println("\tsave -> save my registered course list");
+        System.out.println("\tload -> load my registered course list");
         System.out.println("Important: Please first search a course and check seats before registration!");
         System.out.println("Important: Please search a course before checking the seats!");
         System.out.println("Important: If you want to drop a course, " + confirm);
@@ -201,18 +225,22 @@ public class RegistrationSystem {
 
     // EFFECTS: processes student users' commands
     private void processStudentOperationCommand(String command, Student s) {
-        if (command.equals("s")) {
+        if (command.equals("search")) {
             processSearchingCommand(s);
-        } else if (command.equals("c")) {
+        } else if (command.equals("check")) {
             processCheckingSeatsCommand(s);
-        } else if (command.equals("r")) {
+        } else if (command.equals("register")) {
             processRegisterCommand(s);
-        } else if (command.equals("d")) {
+        } else if (command.equals("drop")) {
             processDropCommand(s);
-        } else if (command.equals("v")) {
+        } else if (command.equals("view")) {
             System.out.println(s.viewAllRegisteredCourses());
-        } else if (command.equals("b")) {
+        } else if (command.equals("back")) {
             login();
+        } else if (command.equals("save")) {
+            saveStudentCourseList();
+        } else if (command.equals("load")) {
+            loadStudentCourseList();
         } else {
             System.out.println("Operation not valid...");
         }
@@ -267,5 +295,51 @@ public class RegistrationSystem {
     void studentOperationDisplayMenu() {
         String form = "in the form of CourseNameCourseNumber (e.g. MATH100), without white space.";
         System.out.println("\tPlease type the course information here, " + form);
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveUniversityCourseList() {
+        try {
+            universityJsonWriter.open();
+            universityJsonWriter.write(uni);
+            universityJsonWriter.close();
+            System.out.println("Saved the course list of " + uni.getUniversityName() + " to " + UNIVERSITY_JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + UNIVERSITY_JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadUniversityCourseList() {
+        try {
+            uni = universityJsonReader.readUniversity();
+            System.out.println("Loaded " + uni.getUniversityName() + " from " + UNIVERSITY_JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + UNIVERSITY_JSON_STORE);
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveStudentCourseList() {
+        try {
+            studentJsonWriter.open();
+            studentJsonWriter.write(stu);
+            studentJsonWriter.close();
+            System.out.println("Saved the course list of " + stu.getName() + " to " + STUDENT_JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + STUDENT_JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadStudentCourseList() {
+        try {
+            stu = studentJsonReader.readStudent(uni);
+            System.out.println("Loaded the course list of " + stu.getName() + " from " + STUDENT_JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + STUDENT_JSON_STORE);
+        }
     }
 }
