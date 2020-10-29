@@ -72,6 +72,21 @@ public class Student implements Writable {
         }
     }
 
+    //REQUIRES: The Course(represented as str) must be searched in advance and return true in searchCourse method;
+    //          The course(represented as str) must be checked seats first and return true in checkSeats method.
+    //MODIFY: this
+    //EFFECTS: add Course(represented as str)to the registeredCourses;
+    //         do NOT change course information.
+    public void registerCourseForLoading(University uni, String str) {
+        ArrayList<Course> courseList = uni.getUniversityCourseList();
+        for (Course cou : courseList) {
+            String courseCode = cou.getCourseName() + Integer.toString(cou.getCourseNumber());
+            if (str.equals(courseCode)) {
+                this.registeredCourses.add(cou);
+            }
+        }
+    }
+
 
     //REQUIRES: Course c should be in the current registeredCourses list
     //MODIFY: this, Course(represented as str)
@@ -112,15 +127,16 @@ public class Student implements Writable {
         }
     }
 
+    //EFFECTS:returns a student as a jason
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("registeredCourseList", coursesToJson());
+        json.put("registeredCourses", coursesToJson());
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns registeredCourseList of a student as a JSON array
     private JSONArray coursesToJson() {
         JSONArray jsonArray = new JSONArray();
 

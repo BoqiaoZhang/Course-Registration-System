@@ -105,6 +105,6 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         String number = jsonObject.getString("number");
         String searchingString = name + number;
-        s.registerCourse(u,searchingString);
+        s.registerCourseForLoading(u,searchingString);
     }
 }

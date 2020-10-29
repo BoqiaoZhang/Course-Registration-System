@@ -78,8 +78,8 @@ public class JsonReaderTest extends JsonTest{
     void testReaderGeneralStudentCourseList() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralStudentCourseList.json");
         University u = new University("UCL");
-        Course c1 = new Course("CPSC",110,100,0,false);
-        Course c2 = new Course("WRDS",150,1,19,false);
+        Course c1 = new Course("CPSC",110,99,1,false);
+        Course c2 = new Course("WRDS",150,0,20,true);
         u.newCourseAdded(c1);
         u.newCourseAdded(c2);
         try {

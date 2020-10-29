@@ -1,19 +1,19 @@
 {
-     "name": "HiItIsMe",
-     "registeredCourseList": [
-          {
-               "number": "150",
-               "seatsRemaining": "19",
-               "name": "WRDS",
-               "isFull": "false",
-               "seatsRegistered": "1"
-          },
+     "registeredCourses": [
           {
                "number": "110",
-               "seatsRemaining": "499",
+               "seatsRemaining": "498",
                "name": "CPSC",
                "isFull": "false",
-               "seatsRegistered": "1"
+               "seatsRegistered": "2"
+          },
+          {
+               "number": "150",
+               "seatsRemaining": "18",
+               "name": "WRDS",
+               "isFull": "false",
+               "seatsRegistered": "2"
           }
-     ]
+     ],
+     "name": "TestyStudent"
 }

@@ -72,10 +72,21 @@ public class JsonWriterTest extends JsonTest {
     void testWriterGeneralStudentCourseList() {
         try {
             Student s = new Student("Billy");
+            University university = new University("myUniversity");
+            Course c = new Course("MATH",100,50);
+            university.newCourseAdded(c);
+            s.registerCourse(university,"MATH100");
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralStudentCourseList.json");
             writer.open();
             writer.write(s);
             writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterGeneralStudentCourseList.json");
+            Student s1 = reader.readStudent(university);
+            assertEquals("Billy", s.getName());
+            List<Course> courses = s.getRegisteredCourses();
+            assertEquals(1, courses.size());
+            checkCourse("MATH", 100, 49,1,false, courses.get(0));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

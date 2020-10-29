@@ -1,4 +1,10 @@
 {
-     "name": "Billy",
-     "registeredCourseList": []
+     "registeredCourses": [{
+          "number": "100",
+          "seatsRemaining": "49",
+          "name": "MATH",
+          "isFull": "false",
+          "seatsRegistered": "1"
+     }],
+     "name": "Billy"
 }

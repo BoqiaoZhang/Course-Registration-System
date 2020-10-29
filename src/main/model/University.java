@@ -39,6 +39,7 @@ public class University implements Writable {
         this.universityCourseList.remove(c);
     }
 
+    //EFFECTS"returns a University as a jasonObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -47,7 +48,7 @@ public class University implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns UniversityCourseList of a university as a JSON array
     private JSONArray coursesToJson() {
         JSONArray jsonArray = new JSONArray();
 
