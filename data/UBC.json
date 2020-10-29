@@ -3,17 +3,17 @@
      "universityCourseList": [
           {
                "number": "110",
-               "seatsRemaining": "500",
+               "seatsRemaining": "499",
                "name": "CPSC",
                "isFull": "false",
-               "seatsRegistered": "0"
+               "seatsRegistered": "1"
           },
           {
                "number": "100",
-               "seatsRemaining": "50",
+               "seatsRemaining": "49",
                "name": "MATH",
                "isFull": "false",
-               "seatsRegistered": "0"
+               "seatsRegistered": "1"
           }
      ]
 }

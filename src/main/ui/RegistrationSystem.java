@@ -326,6 +326,9 @@ public class RegistrationSystem {
             studentJsonWriter.open();
             studentJsonWriter.write(stu);
             studentJsonWriter.close();
+            universityJsonWriter.open();
+            universityJsonWriter.write(uni);
+            universityJsonWriter.close();
             System.out.println("Saved the course list of " + stu.getName() + " to " + STUDENT_JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + STUDENT_JSON_STORE);
