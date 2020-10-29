@@ -70,7 +70,7 @@ public class RegistrationSystem {
         bothLoginDisplayMenu();
         command1 = input1.next();
         command2 = input2.next();
-        stu = new Student(command1,uni);
+        stu = new Student(command1);
 
         studentRegistrationSystem(stu);
     }
@@ -297,7 +297,7 @@ public class RegistrationSystem {
         System.out.println("\tPlease type the course information here, " + form);
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the universityCourseList to file
     private void saveUniversityCourseList() {
         try {
             universityJsonWriter.open();
@@ -310,7 +310,7 @@ public class RegistrationSystem {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads universityCourseList from file
     private void loadUniversityCourseList() {
         try {
             uni = universityJsonReader.readUniversity();
@@ -320,7 +320,7 @@ public class RegistrationSystem {
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the Student information to file
     private void saveStudentCourseList() {
         try {
             studentJsonWriter.open();
@@ -336,7 +336,7 @@ public class RegistrationSystem {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads Student information from file
     private void loadStudentCourseList() {
         try {
             stu = studentJsonReader.readStudent(uni);

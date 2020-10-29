@@ -9,20 +9,15 @@ import java.util.ArrayList;
 public class Student implements Writable {
     private String name;                             //The name of a student
     private ArrayList<Course> registeredCourses;     //The list of courses that have been registered by a student
-    private University uni;
+
 
     //REQUIRES: The student number(studentNum) must be unique (distinctive from that of all other students)
     //EFFECTS: The String name is set to the field called name;
     //         The studentNum is set to the field called studentNumber;
     //         The filed registeredCourses is initialized as a new empty ArrayList<Course>
-    public Student(String name, University uni) {
+    public Student(String name) {
         this.name = name;
-        this.uni = uni;
         this.registeredCourses = new ArrayList<Course>();
-    }
-
-    public University getUniversity() {
-        return this.uni;
     }
 
     public String getName() {
@@ -121,7 +116,6 @@ public class Student implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("University",uni);
         json.put("registeredCourseList", coursesToJson());
         return json;
     }

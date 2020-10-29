@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Course;
+import model.Student;
 import model.University;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class JsonWriterTest extends JsonTest {
 
     @Test
-    void testWriterInvalidFile() {
+    void testWriterUniversityInvalidFile() {
         try {
             University u = new University("My University");
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.Student.json");
@@ -25,18 +26,56 @@ public class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyCourseList() {
+    void testWriterStudentInvalidFile() {
+        try {
+            Student s = new Student("Bill");
+            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.Student.json");
+            writer.open();
+            fail("IOException was expected");
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
+    @Test
+    void testWriterEmptyUniversityCourseList() {
         try {
             University u = new University("My University");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyCourseList.Student.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyCourseList.json");
             writer.open();
             writer.write(u);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyCourseList.Student.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyCourseList.json");
             u = reader.readUniversity();
             assertEquals("My University", u.getUniversityName());
             assertEquals(0, u.getUniversityCourseList().size());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testWriterEmptyStudentCourseList() {
+        try {
+            Student s = new Student("Bill");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyStudentCourseList.json");
+            writer.open();
+            writer.write(s);
+            writer.close();
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testWriterGeneralStudentCourseList() {
+        try {
+            Student s = new Student("Billy");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralStudentCourseList.json");
+            writer.open();
+            writer.write(s);
+            writer.close();
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -49,12 +88,12 @@ public class JsonWriterTest extends JsonTest {
             u.newCourseAdded(new Course("CPSC", 210, 100,0,false));
             u.newCourseAdded(new Course("MATH",100,150,50,false));
             u.newCourseAdded(new Course("EOSC",101,0,50,true));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralCourseList.Student.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralCourseList.json");
             writer.open();
             writer.write(u);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralCourseList.Student.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralCourseList.json");
             u = reader.readUniversity();
             assertEquals("UBC", u.getUniversityName());
             List<Course> courses = u.getUniversityCourseList();

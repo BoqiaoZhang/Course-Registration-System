@@ -46,7 +46,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses University from JSON object and returns it
     private University parseUniversity(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         University u = new University(name);
@@ -54,16 +54,16 @@ public class JsonReader {
         return u;
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses Student from JSON object and returns it
     private Student parseStudent(JSONObject jsonObject, University uni) {
         String name = jsonObject.getString("name");
-        Student s = new Student(name, uni);  //Maybe a bug!!!!
+        Student s = new Student(name);  //Maybe a bug!!!!
         addCourses(uni, s, jsonObject);
         return s;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: University u
+    // EFFECTS: parses universityCourseList from JSON object and adds them to workroom
     private void addCourses(University u, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("universityCourseList");
         for (Object json : jsonArray) {
@@ -72,6 +72,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: Student s
+    // EFFECTS: parses registeredCourseList from JSON object and adds them to workroom
     private void addCourses(University uni, Student s, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("registeredCourses");
         for (Object json : jsonArray) {
@@ -80,8 +82,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: University u
+    // EFFECTS: parses Course from JSON object and adds it to University u
     private void addCourse(University u, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String number = jsonObject.getString("number");
@@ -97,6 +99,8 @@ public class JsonReader {
         u.newCourseAdded(course);
     }
 
+    // MODIFIES: Student s
+    // EFFECTS: parses Course from JSON object and adds it to Student s
     private void registerCourse(University u, Student s, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String number = jsonObject.getString("number");
