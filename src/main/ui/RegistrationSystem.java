@@ -88,8 +88,7 @@ public class RegistrationSystem {
     }
 
     //EFFECTS: run the staff system
-    @SuppressWarnings("checkstyle:MethodLength")
-    private void staffSystem(UniversityStaff staff) {        //over max lines!!!!!!!!!!!!!!1
+    private void staffSystem(UniversityStaff staff) {
         boolean keepGoing = true;
         String command;
 
@@ -101,22 +100,27 @@ public class RegistrationSystem {
                 keepGoing = false;
                 System.out.println("Logged out!");
             } else {
-                if (command.equals("a")) {
-                    addingSystem(staff);
-                } else if (command.equals("r")) {
-                    removingSystem(staff);
-                } else if (command.equals("v")) {
-                    System.out.println(staff.viewAllCourses(uni));
-                } else if (command.equals("b")) {
-                    login();
-                } else if (command.equals("s")) {
-                    saveUniversityCourseList();
-                } else if (command.equals("l")) {
-                    loadUniversityCourseList();
-                } else {
-                    System.out.println("Selection not valid...");
-                }
+                helper(command,staff);
             }
+        }
+    }
+
+    //EFFECTS: just a helper method of staffSystem
+    public void helper(String command,UniversityStaff staff) {
+        if (command.equals("a")) {
+            addingSystem(staff);
+        } else if (command.equals("r")) {
+            removingSystem(staff);
+        } else if (command.equals("v")) {
+            System.out.println(staff.viewAllCourses(uni));
+        } else if (command.equals("b")) {
+            login();
+        } else if (command.equals("s")) {
+            saveUniversityCourseList();
+        } else if (command.equals("l")) {
+            loadUniversityCourseList();
+        } else {
+            System.out.println("Selection not valid...");
         }
     }
 
@@ -196,7 +200,7 @@ public class RegistrationSystem {
             command = input1.next();
             command = command.toLowerCase();
 
-            if (command.equals("quit")) {
+            if (command.equals("6")) {
                 keepGoing = false;
             } else {
                 processStudentOperationCommand(command, s);
@@ -209,15 +213,15 @@ public class RegistrationSystem {
     private void studentRegistrationDisplayMenu() {
         String confirm = "please confirm you have now registered the course by viewing your registered course list";
         System.out.println("\nSelect from:");
-        System.out.println("\tsearch -> search for a course");
-        System.out.println("\tcheck -> check seats for a course");
-        System.out.println("\tregister -> register a course");
-        System.out.println("\tdrop -> drop a course");
-        System.out.println("\tview -> view all registered courses");
-        System.out.println("\tquit -> logout");
-        System.out.println("\tback -> back to the log in page");
-        System.out.println("\tsave -> save my registered course list");
-        System.out.println("\tload -> load my registered course list");
+        System.out.println("\t1 -> search for a course");
+        System.out.println("\t2 -> check seats for a course");
+        System.out.println("\t3 -> register a course");
+        System.out.println("\t4 -> drop a course");
+        System.out.println("\t5 -> view all registered courses");
+        System.out.println("\t6 -> logout");
+        System.out.println("\t7 -> back to the log in page");
+        System.out.println("\t8 -> save my registered course list");
+        System.out.println("\t9 -> load my registered course list");
         System.out.println("Important: Please first search a course and check seats before registration!");
         System.out.println("Important: Please search a course before checking the seats!");
         System.out.println("Important: If you want to drop a course, " + confirm);
@@ -225,21 +229,21 @@ public class RegistrationSystem {
 
     // EFFECTS: processes student users' commands
     private void processStudentOperationCommand(String command, Student s) {
-        if (command.equals("search")) {
+        if (command.equals("1")) {
             processSearchingCommand(s);
-        } else if (command.equals("check")) {
+        } else if (command.equals("2")) {
             processCheckingSeatsCommand(s);
-        } else if (command.equals("register")) {
+        } else if (command.equals("3")) {
             processRegisterCommand(s);
-        } else if (command.equals("drop")) {
+        } else if (command.equals("4")) {
             processDropCommand(s);
-        } else if (command.equals("view")) {
+        } else if (command.equals("5")) {
             System.out.println(s.viewAllRegisteredCourses());
-        } else if (command.equals("back")) {
+        } else if (command.equals("7")) {
             login();
-        } else if (command.equals("save")) {
+        } else if (command.equals("8")) {
             saveStudentCourseList();
-        } else if (command.equals("load")) {
+        } else if (command.equals("9")) {
             loadStudentCourseList();
         } else {
             System.out.println("Operation not valid...");

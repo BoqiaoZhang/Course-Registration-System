@@ -1,11 +1,10 @@
 {
-     "University": "model.University@27bc2616",
-     "name": "Bill",
+     "name": "HiItIsMe",
      "registeredCourseList": [
           {
-               "number": "100",
-               "seatsRemaining": "49",
-               "name": "MATH",
+               "number": "150",
+               "seatsRemaining": "19",
+               "name": "WRDS",
                "isFull": "false",
                "seatsRegistered": "1"
           },

@@ -10,8 +10,15 @@
           },
           {
                "number": "100",
-               "seatsRemaining": "49",
+               "seatsRemaining": "12",
                "name": "MATH",
+               "isFull": "false",
+               "seatsRegistered": "0"
+          },
+          {
+               "number": "150",
+               "seatsRemaining": "19",
+               "name": "WRDS",
                "isFull": "false",
                "seatsRegistered": "1"
           }
