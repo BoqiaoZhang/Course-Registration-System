@@ -1,6 +1,9 @@
 package model;
 
-public class Course {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Course implements Writable {
     private String courseName;                //the name of this course
     private int courseNumber;                 //the special course number of a course
     private int seatsRemaining;               //the number of total seats remaining
@@ -19,6 +22,14 @@ public class Course {
         this.seatsRemaining = sr;
         this.seatsRegistered = 0;
         this.isFull = false;
+    }
+
+    public Course(String cn, int num, int seatsRemaining,int seatsRegistered,boolean isFull) {
+        this.courseName = cn;
+        this.courseNumber = num;
+        this.seatsRemaining = seatsRemaining;
+        this.seatsRegistered = seatsRegistered;
+        this.isFull = isFull;
     }
 
     public String getCourseName() {
@@ -66,5 +77,16 @@ public class Course {
         if (fullOrNot) {
             this.isFull = false;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", courseName);
+        json.put("number", Integer.toString(courseNumber));
+        json.put("seatsRemaining", Integer.toString(seatsRemaining));
+        json.put("seatsRegistered", Integer.toString(seatsRegistered));
+        json.put("isFull", Boolean.toString(isFull));
+        return json;
     }
 }

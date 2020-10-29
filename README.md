@@ -21,7 +21,9 @@ Third, I found it possible to make some improvements for the course registration
 - As a staff user, I want to be able to remove a course from the universityCourseList **(for grading please)**.
 - As a staff user, I want to be able to view all the courses that have been added to the 
 university course list .
-- As a student user, I want to be able to search specific courses of my interests 
+- As a staff user, I want to be able to save the current university course list.
+- As a staff user, I want to be able to load the current university course list. 
+- As a student user, I want to be able to search specific courses of my interests.
 in the course list **(for grading please)**.
 - As a student user, I want to be able to check, for the course I am interested, whether there are remaining available 
 seats for me.
@@ -30,3 +32,5 @@ remaining available seats.
 - As a student user, I want to be able to view all the names of the courses in my 
 registered course list **(for grading please)**.
 - As a student user, I want to be able to drop a course from my registered course list.
+- As a student user, I want to be able to save my registered course list.
+- As a student user, I want to be able to load my registered course list.

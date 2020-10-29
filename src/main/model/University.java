@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class University {
+public class University implements Writable {
     private String name;                                 //The name of the university
     private ArrayList<Course> universityCourseList;      //A list of courses available for students to register,
-                                                         //which are set up be university staff
+    //which are set up be university staff
 
     //EFFECTS: instantiate universityCourses as a new empty ArrayList of Course
     public University(String name) {
@@ -13,6 +17,9 @@ public class University {
         universityCourseList = new ArrayList<Course>();
     }
 
+    public String getUniversityName() {
+        return this.name;
+    }
 
     public ArrayList<Course> getUniversityCourseList() {
         return this.universityCourseList;
@@ -32,4 +39,22 @@ public class University {
         this.universityCourseList.remove(c);
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("universityCourseList", coursesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c : this.universityCourseList) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
+    }
 }

@@ -1,0 +1,19 @@
+{
+  "name": "UBC",
+  "universityCourseList": [
+    {
+      "number": "110",
+      "seatsRemaining": "100",
+      "name": "CPSC",
+      "isFull": "false",
+      "seatsRegistered": "0"
+    },
+    {
+      "number": "150",
+      "seatsRemaining": "0",
+      "name": "WRDS",
+      "isFull": "true",
+      "seatsRegistered": "20"
+    }
+  ]
+}
