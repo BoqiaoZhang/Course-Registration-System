@@ -191,7 +191,7 @@ public class RegistrationSystem {
     }
 
     //EFFECTS: run the student registration system
-    private void studentRegistrationSystem(Student s) {
+    private void studentRegistrationSystem(Student stu) {
         boolean keepGoing = true;
         String command;
 
@@ -203,7 +203,7 @@ public class RegistrationSystem {
             if (command.equals("6")) {
                 keepGoing = false;
             } else {
-                processStudentOperationCommand(command, s);
+                processStudentOperationCommand(command, stu);
             }
         }
         System.out.println("Logged out!");
@@ -230,15 +230,15 @@ public class RegistrationSystem {
     // EFFECTS: processes student users' commands
     private void processStudentOperationCommand(String command, Student s) {
         if (command.equals("1")) {
-            processSearchingCommand(s);
+            processSearchingCommand(stu);
         } else if (command.equals("2")) {
-            processCheckingSeatsCommand(s);
+            processCheckingSeatsCommand(stu);
         } else if (command.equals("3")) {
-            processRegisterCommand(s);
+            processRegisterCommand(stu);
         } else if (command.equals("4")) {
-            processDropCommand(s);
+            processDropCommand(stu);
         } else if (command.equals("5")) {
-            System.out.println(s.viewAllRegisteredCourses());
+            System.out.println(stu.viewAllRegisteredCourses());  //Question here: s or stu ???
         } else if (command.equals("7")) {
             login();
         } else if (command.equals("8")) {

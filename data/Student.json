@@ -1,19 +1,19 @@
 {
      "registeredCourses": [
           {
-               "number": "110",
-               "seatsRemaining": "498",
-               "name": "CPSC",
+               "number": "221",
+               "seatsRemaining": "99",
+               "name": "MATH",
                "isFull": "false",
-               "seatsRegistered": "2"
+               "seatsRegistered": "1"
           },
           {
                "number": "150",
-               "seatsRemaining": "18",
+               "seatsRemaining": "99",
                "name": "WRDS",
                "isFull": "false",
-               "seatsRegistered": "2"
+               "seatsRegistered": "1"
           }
      ],
-     "name": "TestyStudent"
+     "name": "Boqiao"
 }
