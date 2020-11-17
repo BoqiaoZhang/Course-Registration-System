@@ -150,6 +150,7 @@ public class DstaffOperationMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new BStatusChoosing(uni);
+                setVisible(false);
             }
         });
     }

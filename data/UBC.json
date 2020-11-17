@@ -1,5 +1,5 @@
 {
-     "name": "UBC",
+     "name": "ubc",
      "universityCourseList": [
           {
                "number": "210",
@@ -9,9 +9,9 @@
                "seatsRegistered": "0"
           },
           {
-               "number": "221",
-               "seatsRemaining": "100",
-               "name": "MATH",
+               "number": "130",
+               "seatsRemaining": "142",
+               "name": "CHEM",
                "isFull": "false",
                "seatsRegistered": "0"
           }

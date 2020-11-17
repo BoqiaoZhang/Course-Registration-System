@@ -68,7 +68,7 @@ public class CLoginStudent extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         stu = new Student(txtName.getText());
         setVisible(false);
-        //TODO: we need a "new DstudentOperationMenu" here.
+        new DstudentOperationMenu(uni,stu);
     }
 
     public void setTxt() {
