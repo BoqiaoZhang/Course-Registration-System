@@ -21,12 +21,14 @@ public class StudentViewing extends JFrame implements ActionListener {
     private JTextField txtDropCourse;
     private JButton btnDrop;
 
+    //EFFECTS: create a window for students' viewing and dropping operations
     public StudentViewing(University uni, Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS:initialize all fields
     public void init() {
         instruction = new JLabel("You are viewing your registered course list");
         courseList = new JLabel(stu.viewAllRegisteredCourses());
@@ -56,6 +58,8 @@ public class StudentViewing extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components to the window
     public void addComponents() {
         add(instruction);
         add(courseList);
@@ -67,6 +71,7 @@ public class StudentViewing extends JFrame implements ActionListener {
         add(btnDrop);
     }
 
+    //EFFECTS: start a single student-viewing window, just for test
     public static void main(String[] args) {
         new StudentViewing(new University("Test University"),
                 new Student("TestStudent"));
@@ -78,6 +83,7 @@ public class StudentViewing extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS:set bounds for all components
     public void setBounds() {
         instruction.setBounds(20,20,500,20);
         courseList.setBounds(20,50,700,20);
@@ -90,11 +96,13 @@ public class StudentViewing extends JFrame implements ActionListener {
         btnDrop.setBounds(20,270,50,20);
     }
 
+    //EFFECTS:add listeners for all buttons
     public void addListeners() {
         addListenerForAddButton();
         addListenerForDropButton();
     }
 
+    //EFFECTS: add listener for "Back" button
     public void addListenerForAddButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override
@@ -105,6 +113,7 @@ public class StudentViewing extends JFrame implements ActionListener {
         });
     }
 
+    //EFFECTS: add listener for "Drop" button
     public void addListenerForDropButton() {
         btnDrop.addActionListener(new ActionListener() {
             @Override

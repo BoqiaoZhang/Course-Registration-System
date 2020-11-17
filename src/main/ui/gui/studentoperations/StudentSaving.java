@@ -19,12 +19,15 @@ public class StudentSaving extends JFrame implements ActionListener {
     private static String SAVING_ICON_STORE = "./data/saved.png";
     private JButton btnOK;
 
+    //EFFECTS: Create a new window as a confirmation window
+    //         after successfully saving data of a student's course list
     public StudentSaving(University uni,Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS:initialize all fields
     public void init() {
         savingSuccessfullySentence = new JLabel("Successfully saved.");
         ImageIcon image = new ImageIcon(SAVING_ICON_STORE);
@@ -47,12 +50,15 @@ public class StudentSaving extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components to the window
     public void addComponents() {
         add(savingSuccessfullyIcon);
         add(savingSuccessfullySentence);
         add(btnOK);
     }
 
+    //EFFECTS: start a single student-saving window, just for test
     public static void main(String[] args) {
         new StudentSaving(new University("Test University"),
                 new Student("TestStaff"));
@@ -64,16 +70,20 @@ public class StudentSaving extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS: a helper method of init
+    //         set bounds for all the components
     public void setBounds() {
         savingSuccessfullyIcon.setBounds(20,20,400,300);
         savingSuccessfullySentence.setBounds(20,350,200,20);
         btnOK.setBounds(20,400,60,20);
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void addListeners() {
         addListenerForOKButton();
     }
 
+    //EFFECTS: add listener for "OK" button.
     public void addListenerForOKButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override

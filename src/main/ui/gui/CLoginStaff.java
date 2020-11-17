@@ -18,11 +18,13 @@ public class CLoginStaff extends JFrame implements ActionListener {
     private JButton btnOK;
     private JButton btnExit;
 
+    //EFFECTS:Create a new staff-login window
     public CLoginStaff(University uni) {
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: initialize all the fields
     public void init() {
         questionAboutLogin = new JLabel("Please provide your name and student/staff number.");
         questionAboutLogin.setBounds(20,20,400,20);
@@ -52,6 +54,7 @@ public class CLoginStaff extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(questionAboutLogin);
         add(txtName);
@@ -62,11 +65,12 @@ public class CLoginStaff extends JFrame implements ActionListener {
         add(btnExit);
     }
 
+    //EFFECTS: start a single staff-login window, just for test
     public static void main(String[] args) {
         new CLoginStaff(new University("Test University"));
     }
 
-    //EFFECTS: When clicking OK button
+    //EFFECTS: When clicking OK button, go to the "staff operation menu" window
     @Override
     public void actionPerformed(ActionEvent e) {
         staff = new UniversityStaff(txtName.getText(),Integer.parseInt(txtNumber.getText()));

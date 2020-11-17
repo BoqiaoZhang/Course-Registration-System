@@ -15,12 +15,14 @@ public class StaffViewing extends JFrame implements ActionListener {
     private JLabel courseList;
     private JButton btnOK;
 
+    //EFFECTS: create a new window for staff-viewing operation
     public StaffViewing(University uni,UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: a helper method, initializing all components
     public void init() {
         instruction = new JLabel("You are viewing the current university course list");
         courseList = new JLabel(staff.viewAllCourses(uni));
@@ -42,14 +44,17 @@ public class StaffViewing extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components
     public void addComponents() {
         add(instruction);
         add(courseList);
         add(btnOK);
     }
 
+    //EFFECTS: create a single staff-loading window just for test
     public static void main(String[] args) {
-        new StaffAdding(new University("Test University"),
+        new StaffViewing(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
     }
 
@@ -59,16 +64,19 @@ public class StaffViewing extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS: set bounds for all components
     public void setBounds() {
         instruction.setBounds(20,20,500,20);
         courseList.setBounds(20,50,700,20);
         btnOK.setBounds(20,100,60,20);
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void addListeners() {
         addListenerForAddButton();
     }
 
+    //EFFECTS: add listener for "OK" button.
     public void addListenerForAddButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override

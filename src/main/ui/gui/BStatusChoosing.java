@@ -14,10 +14,12 @@ public class BStatusChoosing extends JFrame implements ActionListener {
     private JButton btnOK;
     private JButton btnExit;
 
+    //EFFECTS:Create a new status-choosing window
     public BStatusChoosing(University uni) {
         init(uni);
     }
 
+    //EFFECTS: initialize all the fields
     public void init(University uni) {
         this.uni = uni;
         questionAboutStatus = new JLabel("Are you staff or a student?");
@@ -45,6 +47,7 @@ public class BStatusChoosing extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(questionAboutStatus);
         add(choosingStaff);
@@ -53,11 +56,13 @@ public class BStatusChoosing extends JFrame implements ActionListener {
         add(btnExit);
     }
 
+    //EFFECTS: start a single status-choosing window, just for test
     public static void main(String[] args) {
         new BStatusChoosing(new University("Test University"));
     }
 
-    //EFFECTS: just a default method doing noting
+    //EFFECTS: If "staff" button is clicked, go to the loginStaff window;
+    //         If "student" button is clicked, go to the loginStudent window.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == choosingStaff && e.getSource() != choosingStudent) {

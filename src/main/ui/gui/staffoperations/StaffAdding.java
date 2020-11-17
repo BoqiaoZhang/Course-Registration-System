@@ -22,12 +22,15 @@ public class StaffAdding extends JFrame implements ActionListener {
     private JTextField txtTotalSeats;
     private JButton btnAdd;
 
+
+    //EFFECTS: Create a new window for staff-adding operation
     public StaffAdding(University uni,UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: a helper method of init
     public void init() {
         instruction = new JLabel("Please provide the following information of the course you want to add");
         lblCourseName = new JLabel("The course name");
@@ -54,6 +57,8 @@ public class StaffAdding extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components to the window
     public void addComponents() {
         add(instruction);
         add(lblCourseName);
@@ -65,6 +70,7 @@ public class StaffAdding extends JFrame implements ActionListener {
         add(btnAdd);
     }
 
+    //EFFECTS: start a single staff-adding window, just for test
     public static void main(String[] args) {
         new StaffAdding(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
@@ -76,6 +82,8 @@ public class StaffAdding extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS: a helper method of init
+    //         set bounds for all the components
     public void setBounds() {
         instruction.setBounds(20,20,500,20);
         lblCourseName.setBounds(20,60,150,20);
@@ -87,10 +95,12 @@ public class StaffAdding extends JFrame implements ActionListener {
         btnAdd.setBounds(20,200,60,20);
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void addListeners() {
         addListenerForAddButton();
     }
 
+    //EFFECTS: add listener for "add" button.
     public void addListenerForAddButton() {
         btnAdd.addActionListener(new ActionListener() {
             @Override

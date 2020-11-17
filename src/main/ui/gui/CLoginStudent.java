@@ -18,11 +18,13 @@ public class CLoginStudent extends JFrame implements ActionListener {
     private JButton btnOK;
     private JButton btnExit;
 
+    //EFFECTS:Create a new staff-login window
     public CLoginStudent(University uni) {
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: initialize all the fields
     public void init() {
         questionAboutLogin = new JLabel("Please provide your name and student/staff number.");
         questionAboutLogin.setBounds(20,20,400,20);
@@ -49,6 +51,7 @@ public class CLoginStudent extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(questionAboutLogin);
         add(txtName);
@@ -59,6 +62,7 @@ public class CLoginStudent extends JFrame implements ActionListener {
         add(btnExit);
     }
 
+    //EFFECTS: start a single student-login window, just for test
     public static void main(String[] args) {
         new CLoginStudent(new University("Test University"));
     }
@@ -71,6 +75,7 @@ public class CLoginStudent extends JFrame implements ActionListener {
         new DstudentOperationMenu(uni,stu);
     }
 
+    //EFFECTS: set range and bounds for all the JTextFields
     public void setTxt() {
         txtName = new JTextField(15);
         txtName.setBounds(100,60,100,20);

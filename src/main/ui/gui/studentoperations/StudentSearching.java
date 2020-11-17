@@ -28,12 +28,14 @@ public class StudentSearching extends JFrame implements ActionListener {
     private JLabel lblRegister;
     private JButton btnRegister;
 
+    //EFFECTS: create a window for students' searching, checkingSeats and registering
     public StudentSearching(University uni, Student stu) {
         this.uni = uni;
         this.stu = stu;
         init();
     }
 
+    //EFFECTS:initialize all fields
     public void init() {
         initFields();
 
@@ -53,6 +55,7 @@ public class StudentSearching extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init just because of max line limit of each method
     public void initFields() {
         instruction = new JLabel("Please provide the course information below.");
         String form = "Reminder: In the form of CourseNameCourseNumber (e.g. MATH100), without white space.";
@@ -73,6 +76,7 @@ public class StudentSearching extends JFrame implements ActionListener {
         btnRegister = new JButton("Register");
     }
 
+    //EFFECTS: add listener for "OK" button.
     public void addListenerForOK() {
         btnOK.addActionListener(new ActionListener() {
             @Override
@@ -82,6 +86,7 @@ public class StudentSearching extends JFrame implements ActionListener {
         });
     }
 
+    //EFFECTS: add listener for "check seats" button.
     public void addListenerForCheckSeats() {
         btnCheckSeats.addActionListener(new ActionListener() {
             @Override
@@ -101,6 +106,7 @@ public class StudentSearching extends JFrame implements ActionListener {
         });
     }
 
+    //EFFECTS: add listener for "register" button.
     public void addListenerForRegister() {
         btnRegister.addActionListener(new ActionListener() {
             @Override
@@ -112,7 +118,10 @@ public class StudentSearching extends JFrame implements ActionListener {
         });
     }
 
-    //EFFECTS: When clicking Search button, respond
+    //EFFECTS: When clicking Search button, respond as below
+    //         if the course is in the university course list, make "lblTrueSearch" label visible
+    //         also, make "check seats" button/labels/textFields visible;
+    //         if the course cannot be found, make "lblFalseSearch" label visible
     @Override
     public void actionPerformed(ActionEvent e) {
         if (stu.searchCourse(uni,txtSearch.getText())) {
@@ -127,6 +136,8 @@ public class StudentSearching extends JFrame implements ActionListener {
         }
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components to the window
     public void addComponents() {
         add(instruction);
         add(reminder);
@@ -144,6 +155,8 @@ public class StudentSearching extends JFrame implements ActionListener {
         add(btnRegister);
     }
 
+    //EFFECTS: a helper method of init
+    //         set bounds for all the components
     public void setBounds() {
         instruction.setBounds(20,20,600,20);
         reminder.setBounds(20,40,600,20);
@@ -161,6 +174,9 @@ public class StudentSearching extends JFrame implements ActionListener {
         btnRegister.setBounds(20,330,80,20);
     }
 
+    //EFFECTS: a helper method of init
+    //         initially, set "search" related visible
+    //                    "check seats" or "register" related invisible
     public void setVisibles() {
         lblTrueSearch.setVisible(false);
         lblFalseSearch.setVisible(false);
@@ -174,6 +190,7 @@ public class StudentSearching extends JFrame implements ActionListener {
         btnRegister.setVisible(false);
     }
 
+    //EFFECTS: start a single student-searching window, just for test
     public static void main(String[] args) {
         new StudentSearching(new University("Test University"),
                 new Student("TestStudent"));

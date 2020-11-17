@@ -34,12 +34,14 @@ public class DstudentOperationMenu extends JFrame {
     private JButton btnSave;
     private JButton btnLoad;
 
+    //EFFECTS:Create a new student-operation-menu window
     public DstudentOperationMenu(University uni, Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: initialize all the fields
     public void init() {
         studentJsonReader = new JsonReader(STUDENT_JSON_STORE);
         studentJsonWriter = new JsonWriter(STUDENT_JSON_STORE);
@@ -63,6 +65,7 @@ public class DstudentOperationMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(btnSearch);
         add(btnView);
@@ -72,11 +75,14 @@ public class DstudentOperationMenu extends JFrame {
         add(btnLoad);
     }
 
+    //EFFECTS: start a single student-operation-menu window, just for test
     public static void main(String[] args) {
         new DstudentOperationMenu(new University("Test University"),
                 new Student("TestStaff"));
     }
 
+    //EFFECTS: add listener for "search" button
+    //         when clicking this button, go to student-search window
     public void processSearch() {
         btnSearch.addActionListener(new ActionListener() {
             @Override
@@ -87,6 +93,8 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "view" button
+    //         when clicking this button, go to student-view window
     public void processView() {
         btnView.addActionListener(new ActionListener() {
             @Override
@@ -97,6 +105,8 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "exit" button
+    //         when clicking this button, stop the whole project
     public void processExit() {
         btnExit.addActionListener(new ActionListener() {
             @Override
@@ -106,6 +116,8 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "back" button
+    //         when clicking this button, go back to the status-choosing window
     public void processBack() {
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -116,6 +128,8 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "save" button
+    //         when clicking this button, go to student-saving window
     public void processSaving() {
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -136,6 +150,8 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "load" button
+    //         when clicking this button, go to student-loading window
     public void processLoading() {
         btnLoad.addActionListener(new ActionListener() {
             @Override
@@ -151,6 +167,7 @@ public class DstudentOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void processAllActions() {
         processSearch();
         processView();
@@ -158,6 +175,5 @@ public class DstudentOperationMenu extends JFrame {
         processBack();
         processSaving();
         processLoading();
-        //TODO: add processSomething here
     }
 }

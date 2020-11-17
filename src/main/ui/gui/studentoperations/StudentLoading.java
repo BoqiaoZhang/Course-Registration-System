@@ -2,10 +2,7 @@ package ui.gui.studentoperations;
 
 import model.Student;
 import model.University;
-import model.UniversityStaff;
-import ui.gui.DstaffOperationMenu;
 import ui.gui.DstudentOperationMenu;
-import ui.gui.staffoperations.StaffAdding;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,12 +16,15 @@ public class StudentLoading extends JFrame implements ActionListener {
     private JLabel savingSuccessfullySentence;
     private JButton btnOK;
 
+    //EFFECTS: Create a new window as a confirmation window
+    //         after successfully loading data
     public StudentLoading(University uni,Student stu) {
         this.stu  = stu;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS:initialize all fields
     public void init() {
         ImageIcon image = new ImageIcon(LOADING_ICON_STORE);
         savingSuccessfullyIcon = new JLabel(image);
@@ -47,15 +47,18 @@ public class StudentLoading extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components to the window
     public void addComponents() {
         add(savingSuccessfullyIcon);
         add(savingSuccessfullySentence);
         add(btnOK);
     }
 
+    //EFFECTS: start a single student-loading window, just for test
     public static void main(String[] args) {
-        new StaffAdding(new University("Test University"),
-                new UniversityStaff("TestStaff",0));
+        new StudentLoading(new University("Test University"),
+                new Student("TestStaff"));
     }
 
     //EFFECTS: default method doing nothing
@@ -64,17 +67,21 @@ public class StudentLoading extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS: a helper method of init
+    //         set bounds for all the components
     public void setBounds() {
         savingSuccessfullyIcon.setBounds(20,20,400,300);
         savingSuccessfullySentence.setBounds(20,350,200,20);
         btnOK.setBounds(20,400,60,20);
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void addListeners() {
-        addListenerForAddButton();
+        addListenerForOKButton();
     }
 
-    public void addListenerForAddButton() {
+    //EFFECTS: add listener for "OK" button.
+    public void addListenerForOKButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

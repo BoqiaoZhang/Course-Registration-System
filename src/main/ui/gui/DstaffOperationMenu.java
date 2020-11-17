@@ -28,12 +28,14 @@ public class DstaffOperationMenu extends JFrame {
     private JButton btnBack; //bingo
     private JButton btnExit; //bingo (without new window, just simple shutting down)
 
+    //EFFECTS:Create a new staff-operation-menu window
     public DstaffOperationMenu(University uni, UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: initialize all the fields
     public void init() {
         universityJsonReader = new JsonReader(UNIVERSITY_JSON_STORE);
         universityJsonWriter = new JsonWriter(UNIVERSITY_JSON_STORE);
@@ -56,6 +58,7 @@ public class DstaffOperationMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(btnAdd);
         add(btnRemove);
@@ -66,11 +69,14 @@ public class DstaffOperationMenu extends JFrame {
         add(btnExit);
     }
 
+    //EFFECTS: start a single staff-operation-menu window, just for test
     public static void main(String[] args) {
         new DstaffOperationMenu(new University("Test University"),
                 new UniversityStaff("TestStaff", 0));
     }
 
+    //EFFECTS: add listener for "add" button
+    //         when clicking this button, go to staff-adding window
     public void processAdding() {
         btnAdd.addActionListener(new ActionListener() {
             @Override
@@ -81,6 +87,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "remove" button
+    //         when clicking this button, go to staff-removing window
     public void processRemoving() {
         btnRemove.addActionListener(new ActionListener() {
             @Override
@@ -91,6 +99,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "view" button
+    //         when clicking this button, go to staff-viewing window
     public void processViewing() {
         btnView.addActionListener(new ActionListener() {
             @Override
@@ -101,6 +111,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "asve" button
+    //         when clicking this button, go to staff-saving window
     public void processSaving() {
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -119,6 +131,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "load" button
+    //         when clicking this button, go to staff-loading window
     public void processLoading() {
         btnLoad.addActionListener(new ActionListener() {
             @Override
@@ -135,6 +149,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "add" button
+    //         when clicking this button, stop the whole project
     public void processExit() {
         btnExit.addActionListener(new ActionListener() {
             @Override
@@ -145,6 +161,8 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listener for "back" button
+    //         when clicking this button, go back to the status-choosing window
     public void processBack() {
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -155,6 +173,7 @@ public class DstaffOperationMenu extends JFrame {
         });
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void processAllActions() {
         processAdding();
         processRemoving();

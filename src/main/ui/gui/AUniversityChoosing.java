@@ -14,10 +14,12 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
     private JButton btnOK;
     private JButton btnExit;
 
+    //EFFECTS:Create a new university-choosing window
     public AUniversityChoosing() {
         init();
     }
 
+    //EFFECTS: initialize all the fields
     public void init() {
         questionAboutUniversity = new JLabel("Which university are you from?");
         questionAboutUniversity.setBounds(20,20,300,20);
@@ -29,7 +31,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
         txtUniversity = new JTextField(15);
         txtUniversity.setBounds(100,40,100,20);
 
-        initializeEnterAndExistButtons();
+        initializeEnterAndExitButtons();
 
         addComponents();
 
@@ -39,6 +41,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS:add all the components to our window
     public void addComponents() {
         add(questionAboutUniversity);
         add(lblUniversity);
@@ -47,6 +50,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
         add(btnExit);
     }
 
+    //EFFECTS: start a single university-choosing window, just for test
     public static void main(String[] args) {
         new AUniversityChoosing();
     }
@@ -57,7 +61,8 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
         //do nothing
     }
 
-    public void initializeEnterAndExistButtons() {
+    //EFFECTS: initialize "enter" and "exit" button and add listeners for these two buttons
+    public void initializeEnterAndExitButtons() {
         btnOK = new JButton("Enter");
         btnExit = new JButton("Exit");
         btnOK.setBounds(60,100,60,20);

@@ -18,19 +18,21 @@ public class StaffRemoving extends JFrame implements ActionListener {
     private JTextField txtCourseNumber;
     private JButton btnOK;
 
+    //EFFECTS: create a new window for staff-removing operation
     public StaffRemoving(University uni,UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
     }
 
+    //EFFECTS: a helper method, initializing all components
     public void init() {
         instruction = new JLabel("Please provide the following information of the course you want to remove");
         lblCourseName = new JLabel("The course name");
         lblCourseNumber = new JLabel("The course number");
         txtCourseName = new JTextField(15);
         txtCourseNumber = new JTextField(15);
-        btnOK = new JButton("OK");
+        btnOK = new JButton("Remove");
 
         btnOK.addActionListener(this);
 
@@ -43,11 +45,13 @@ public class StaffRemoving extends JFrame implements ActionListener {
         addComponents();
 
         setBounds(1,1,500,600);
-        setTitle("Course Adding Page");
+        setTitle("Course Removing Page");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //EFFECTS: a helper method of init
+    //         add all components
     public void addComponents() {
         add(instruction);
         add(lblCourseName);
@@ -57,8 +61,9 @@ public class StaffRemoving extends JFrame implements ActionListener {
         add(btnOK);
     }
 
+    //EFFECTS: create a single staff-removing window just for test
     public static void main(String[] args) {
-        new StaffAdding(new University("Test University"),
+        new StaffRemoving(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
     }
 
@@ -68,6 +73,7 @@ public class StaffRemoving extends JFrame implements ActionListener {
         //default
     }
 
+    //EFFECTS: set bounds for all components
     public void setBounds() {
         instruction.setBounds(20,20,500,20);
         lblCourseName.setBounds(20,60,150,20);
@@ -77,10 +83,12 @@ public class StaffRemoving extends JFrame implements ActionListener {
         btnOK.setBounds(20,200,60,20);
     }
 
+    //EFFECTS: add listeners for all the buttons
     public void addListeners() {
         addListenerForAddButton();
     }
 
+    //EFFECTS: add listener for "Remove" button.
     public void addListenerForAddButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override
