@@ -82,6 +82,7 @@ public class StudentSearching extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DstudentOperationMenu(uni,stu);
+                setVisible(false);
             }
         });
     }
@@ -133,6 +134,13 @@ public class StudentSearching extends JFrame implements ActionListener {
         } else {
             lblTrueSearch.setVisible(false);
             lblFalseSearch.setVisible(true);
+            lblCheckSeatsIntroduction.setVisible(false); ;
+            btnCheckSeats.setVisible(false);
+            lblTrueCheck.setVisible(false);
+            lblFalseCheck.setVisible(false);
+            lblRegister.setVisible(false);
+            btnRegister.setVisible(false);
+            btnOK.setBounds(100,160,50,20);
         }
     }
 

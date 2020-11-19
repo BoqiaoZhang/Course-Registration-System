@@ -1,4 +1,10 @@
 {
-     "registeredCourses": [],
-     "name": "Bill"
+     "registeredCourses": [{
+          "number": "210",
+          "seatsRemaining": "9800",
+          "name": "CPSC",
+          "isFull": "false",
+          "seatsRegistered": "2"
+     }],
+     "name": "kjsad"
 }
