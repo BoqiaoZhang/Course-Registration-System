@@ -1,4 +1,4 @@
-package ui.gui.staffoperations;
+package ui.gui.operations.staffoperations;
 
 import model.University;
 import model.UniversityStaff;
@@ -8,16 +8,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffLoading extends JFrame implements ActionListener {
+public class StaffViewing extends JFrame implements ActionListener {
     private UniversityStaff staff;
     private University uni;
-    private JLabel savingSuccessfullyIcon;
-    private static String LOADING_ICON_STORE = "./data/saved.png";
-    private JLabel savingSuccessfullySentence;
+    private JLabel instruction;
+    private JLabel courseList;
     private JButton btnOK;
 
-    //EFFECTS: create a new window for staff-loading operation
-    public StaffLoading(University uni,UniversityStaff staff) {
+    //EFFECTS: create a new window for staff-viewing operation
+    public StaffViewing(University uni,UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
@@ -25,9 +24,8 @@ public class StaffLoading extends JFrame implements ActionListener {
 
     //EFFECTS: a helper method, initializing all components
     public void init() {
-        ImageIcon image = new ImageIcon(LOADING_ICON_STORE);
-        savingSuccessfullyIcon = new JLabel(image);
-        savingSuccessfullySentence = new JLabel("Successfully loaded.");
+        instruction = new JLabel("You are viewing the current university course list");
+        courseList = new JLabel(staff.viewAllCourses(uni));
         btnOK = new JButton("OK");
 
         btnOK.addActionListener(this);
@@ -40,7 +38,7 @@ public class StaffLoading extends JFrame implements ActionListener {
 
         addComponents();
 
-        setBounds(1,1,500,600);
+        setBounds(1,1,800,600);
         setTitle("Course Adding Page");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,14 +47,14 @@ public class StaffLoading extends JFrame implements ActionListener {
     //EFFECTS: a helper method of init
     //         add all components
     public void addComponents() {
-        add(savingSuccessfullyIcon);
-        add(savingSuccessfullySentence);
+        add(instruction);
+        add(courseList);
         add(btnOK);
     }
 
     //EFFECTS: create a single staff-loading window just for test
     public static void main(String[] args) {
-        new StaffLoading(new University("Test University"),
+        new StaffViewing(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
     }
 
@@ -68,25 +66,27 @@ public class StaffLoading extends JFrame implements ActionListener {
 
     //EFFECTS: set bounds for all components
     public void setBounds() {
-        savingSuccessfullyIcon.setBounds(20,20,400,300);
-        savingSuccessfullySentence.setBounds(20,350,200,20);
-        btnOK.setBounds(20,400,60,20);
+        instruction.setBounds(20,20,500,20);
+        courseList.setBounds(20,50,700,20);
+        btnOK.setBounds(20,100,60,20);
     }
 
     //EFFECTS: add listeners for all the buttons
     public void addListeners() {
-        addListenerForOKButton();
+        addListenerForAddButton();
     }
 
     //EFFECTS: add listener for "OK" button.
-    public void addListenerForOKButton() {
+    public void addListenerForAddButton() {
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DstaffOperationMenu(uni,staff);
                 setVisible(false);
+                staff.viewAllCourses(uni); //TODO: Remember to comment this line out!!!
             }
         });
     }
 }
+
 

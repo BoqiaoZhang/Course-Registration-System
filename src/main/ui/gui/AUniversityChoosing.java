@@ -36,7 +36,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
         addComponents();
 
         setBounds(1,1,500,600);
-        setTitle("GUIdesign");
+        setTitle("Course Registration System Login Page");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -2,18 +2,25 @@
      "name": "ubc",
      "universityCourseList": [
           {
-               "number": "210",
-               "seatsRemaining": "9800",
-               "name": "CPSC",
-               "isFull": "false",
-               "seatsRegistered": "2"
-          },
-          {
                "number": "200",
-               "seatsRemaining": "231",
+               "seatsRemaining": "99",
                "name": "MATH",
                "isFull": "false",
+               "seatsRegistered": "1"
+          },
+          {
+               "number": "210",
+               "seatsRemaining": "300",
+               "name": "CPSC",
+               "isFull": "false",
                "seatsRegistered": "0"
+          },
+          {
+               "number": "130",
+               "seatsRemaining": "0",
+               "name": "CHEM",
+               "isFull": "true",
+               "seatsRegistered": "1"
           }
      ]
 }

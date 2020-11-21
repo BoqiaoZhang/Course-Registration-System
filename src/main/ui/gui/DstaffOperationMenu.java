@@ -4,7 +4,7 @@ import model.University;
 import model.UniversityStaff;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.gui.staffoperations.*;
+import ui.gui.operations.staffoperations.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +53,7 @@ public class DstaffOperationMenu extends JFrame {
         processAllActions();
 
         setBounds(1, 1, 500, 600);
-        setTitle("GUIdesign");
+        setTitle("Staff Operation Menu");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

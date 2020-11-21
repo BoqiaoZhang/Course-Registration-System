@@ -1,27 +1,24 @@
-package ui.gui.studentoperations;
+package ui.gui.operations.studentoperations;
 
 import model.Student;
 import model.University;
-import model.UniversityStaff;
-import ui.gui.DstaffOperationMenu;
 import ui.gui.DstudentOperationMenu;
-import ui.gui.staffoperations.StaffAdding;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StudentSaving extends JFrame implements ActionListener {
-    private Student stu;
-    private University uni;
-    private JLabel savingSuccessfullyIcon;
-    private JLabel savingSuccessfullySentence;
-    private static String SAVING_ICON_STORE = "./data/saved.png";
-    private JButton btnOK;
+public abstract class StudentConfirmationWindow extends JFrame implements ActionListener {
+    protected Student stu;
+    protected University uni;
+    protected JLabel successfulIcon;
+    protected JLabel successfulSentence;
+    protected static String SAVING_ICON_STORE = "./data/saved.png";
+    protected JButton btnOK;
 
     //EFFECTS: Create a new window as a confirmation window
     //         after successfully saving data of a student's course list
-    public StudentSaving(University uni,Student stu) {
+    public StudentConfirmationWindow(University uni, Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
@@ -29,9 +26,11 @@ public class StudentSaving extends JFrame implements ActionListener {
 
     //EFFECTS:initialize all fields
     public void init() {
-        savingSuccessfullySentence = new JLabel("Successfully saved.");
+        successfulSentence = new JLabel();
+        setTextForSuccessfulSentence(); //abstract method for setting the text of the successfulSentence
+
         ImageIcon image = new ImageIcon(SAVING_ICON_STORE);
-        savingSuccessfullyIcon = new JLabel(image); //TODO: Add an icon here later!!!!!!
+        successfulIcon = new JLabel(image);
         btnOK = new JButton("OK");
 
         btnOK.addActionListener(this);
@@ -45,7 +44,8 @@ public class StudentSaving extends JFrame implements ActionListener {
         addComponents();
 
         setBounds(1,1,500,600);
-        setTitle("Saving Confirmation Page");
+        setTextForTitle(); //abstract method, setting the distinct title of each window
+
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -53,16 +53,16 @@ public class StudentSaving extends JFrame implements ActionListener {
     //EFFECTS: a helper method of init
     //         add all components to the window
     public void addComponents() {
-        add(savingSuccessfullyIcon);
-        add(savingSuccessfullySentence);
+        add(successfulIcon);
+        add(successfulSentence);
         add(btnOK);
     }
 
-    //EFFECTS: start a single student-saving window, just for test
+    /*//EFFECTS: start a single student-saving window, just for test
     public static void main(String[] args) {
-        new StudentSaving(new University("Test University"),
+        new SuccessConfirmationWindow(new University("Test University"),
                 new Student("TestStaff"));
-    }
+    }*/
 
     //EFFECTS: default method doing nothing
     @Override
@@ -73,8 +73,8 @@ public class StudentSaving extends JFrame implements ActionListener {
     //EFFECTS: a helper method of init
     //         set bounds for all the components
     public void setBounds() {
-        savingSuccessfullyIcon.setBounds(20,20,400,300);
-        savingSuccessfullySentence.setBounds(20,350,200,20);
+        successfulIcon.setBounds(20,20,400,300);
+        successfulSentence.setBounds(20,350,200,20);
         btnOK.setBounds(20,400,60,20);
     }
 
@@ -93,5 +93,10 @@ public class StudentSaving extends JFrame implements ActionListener {
             }
         });
     }
+
+    public abstract void setTextForTitle();
+
+    public abstract void setTextForSuccessfulSentence();
 }
+
 

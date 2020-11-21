@@ -2,14 +2,12 @@ package ui.gui;
 
 import model.Student;
 import model.University;
-import model.UniversityStaff;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.gui.staffoperations.StaffSaving;
-import ui.gui.studentoperations.StudentLoading;
-import ui.gui.studentoperations.StudentSaving;
-import ui.gui.studentoperations.StudentSearching;
-import ui.gui.studentoperations.StudentViewing;
+import ui.gui.operations.studentoperations.StudentLoading;
+import ui.gui.operations.studentoperations.StudentSaving;
+import ui.gui.operations.studentoperations.StudentSearching;
+import ui.gui.operations.studentoperations.StudentViewing;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +58,7 @@ public class DstudentOperationMenu extends JFrame {
         processAllActions();
 
         setBounds(1, 1, 700, 600);
-        setTitle("GUIdesign");
+        setTitle("Student Operation Menu");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

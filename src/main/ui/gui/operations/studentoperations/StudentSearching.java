@@ -1,4 +1,4 @@
-package ui.gui.studentoperations;
+package ui.gui.operations.studentoperations;
 
 import model.Student;
 import model.University;
