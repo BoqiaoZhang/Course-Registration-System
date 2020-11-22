@@ -2,7 +2,7 @@ package ui.gui.operations.staffoperations;
 
 import model.University;
 import model.UniversityStaff;
-import ui.gui.DstaffOperationMenu;
+import ui.gui.StaffOperationWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -79,7 +79,7 @@ public abstract class StaffConfirmationWindow extends JFrame implements ActionLi
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DstaffOperationMenu(uni,staff);
+                new StaffOperationWindow(uni,staff);
                 setVisible(false);
             }
         });

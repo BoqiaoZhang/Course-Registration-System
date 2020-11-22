@@ -1,15 +1,15 @@
 package ui.gui;
 
-import model.Student;
 import model.University;
+import model.UniversityStaff;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CLoginStudent extends JFrame implements ActionListener {
+public class LoginStaffWindow extends JFrame implements ActionListener {
+    private UniversityStaff staff;
     private University uni;
-    protected Student stu;
     private JLabel questionAboutLogin;
     private JTextField txtName;
     private JTextField txtNumber;
@@ -19,7 +19,7 @@ public class CLoginStudent extends JFrame implements ActionListener {
     private JButton btnExit;
 
     //EFFECTS:Create a new staff-login window
-    public CLoginStudent(University uni) {
+    public LoginStaffWindow(University uni) {
         this.uni = uni;
         init();
     }
@@ -35,7 +35,10 @@ public class CLoginStudent extends JFrame implements ActionListener {
 
         setLayout(null);
 
-        setTxt();
+        txtName = new JTextField(15);
+        txtName.setBounds(100,60,100,20);
+        txtNumber = new JTextField(15);
+        txtNumber.setBounds(100,80,100,20);
 
         btnOK = new JButton("Enter");
         btnExit = new JButton("Exit");
@@ -62,24 +65,16 @@ public class CLoginStudent extends JFrame implements ActionListener {
         add(btnExit);
     }
 
-    //EFFECTS: start a single student-login window, just for test
+    //EFFECTS: start a single staff-login window, just for test
     public static void main(String[] args) {
-        new CLoginStudent(new University("Test University"));
+        new LoginStaffWindow(new University("Test University"));
     }
 
-    //EFFECTS: when clicking OK button, create a new student, go to the StudentOperationMenu.
+    //EFFECTS: When clicking OK button, go to the "staff operation menu" window
     @Override
     public void actionPerformed(ActionEvent e) {
-        stu = new Student(txtName.getText());
+        staff = new UniversityStaff(txtName.getText(),Integer.parseInt(txtNumber.getText()));
         setVisible(false);
-        new DstudentOperationMenu(uni,stu);
-    }
-
-    //EFFECTS: set range and bounds for all the JTextFields
-    public void setTxt() {
-        txtName = new JTextField(15);
-        txtName.setBounds(100,60,100,20);
-        txtNumber = new JTextField(15);
-        txtNumber.setBounds(100,80,100,20);
+        new StaffOperationWindow(uni,staff);
     }
 }

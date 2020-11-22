@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BStatusChoosing extends JFrame implements ActionListener {
+public class StatusChoosingWindow extends JFrame implements ActionListener {
     private static University uni;
     private JLabel questionAboutStatus;
     private JRadioButton choosingStaff;
@@ -15,7 +15,7 @@ public class BStatusChoosing extends JFrame implements ActionListener {
     private JButton btnExit;
 
     //EFFECTS:Create a new status-choosing window
-    public BStatusChoosing(University uni) {
+    public StatusChoosingWindow(University uni) {
         init(uni);
     }
 
@@ -58,7 +58,7 @@ public class BStatusChoosing extends JFrame implements ActionListener {
 
     //EFFECTS: start a single status-choosing window, just for test
     public static void main(String[] args) {
-        new BStatusChoosing(new University("Test University"));
+        new StatusChoosingWindow(new University("Test University"));
     }
 
     //EFFECTS: If "staff" button is clicked, go to the loginStaff window;
@@ -66,9 +66,9 @@ public class BStatusChoosing extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == choosingStaff && e.getSource() != choosingStudent) {
-            new CLoginStaff(uni);
+            new LoginStaffWindow(uni);
         } else if (e.getSource() != choosingStaff && e.getSource() == choosingStudent) {
-            new CLoginStudent(uni);
+            new LoginStudentWindow(uni);
         } else if (e.getSource() != choosingStaff && e.getSource() != choosingStudent) {
             System.out.println("Please select whether you are staff or a student.");
         } else if (e.getSource() == choosingStaff && e.getSource() == choosingStudent) {

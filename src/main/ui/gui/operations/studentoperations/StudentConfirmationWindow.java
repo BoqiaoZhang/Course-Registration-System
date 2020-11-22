@@ -2,7 +2,7 @@ package ui.gui.operations.studentoperations;
 
 import model.Student;
 import model.University;
-import ui.gui.DstudentOperationMenu;
+import ui.gui.StudentOperationWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -88,7 +88,7 @@ public abstract class StudentConfirmationWindow extends JFrame implements Action
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DstudentOperationMenu(uni,stu);
+                new StudentOperationWindow(uni,stu);
                 setVisible(false);
             }
         });

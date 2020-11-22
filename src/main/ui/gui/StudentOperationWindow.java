@@ -16,11 +16,10 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class DstudentOperationMenu extends JFrame {
+public class StudentOperationWindow extends JFrame {
     private Student stu;
     private University uni;
     private JsonWriter universityJsonWriter;
-    private JsonReader universityJsonReader;
     private JsonWriter studentJsonWriter;
     private JsonReader studentJsonReader;
     private static final String UNIVERSITY_JSON_STORE = "./data/UBC.json";
@@ -33,7 +32,7 @@ public class DstudentOperationMenu extends JFrame {
     private JButton btnLoad;
 
     //EFFECTS:Create a new student-operation-menu window
-    public DstudentOperationMenu(University uni, Student stu) {
+    public StudentOperationWindow(University uni, Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
@@ -43,7 +42,6 @@ public class DstudentOperationMenu extends JFrame {
     public void init() {
         studentJsonReader = new JsonReader(STUDENT_JSON_STORE);
         studentJsonWriter = new JsonWriter(STUDENT_JSON_STORE);
-        universityJsonReader = new JsonReader(UNIVERSITY_JSON_STORE);
         universityJsonWriter = new JsonWriter(UNIVERSITY_JSON_STORE);
         btnSearch = new JButton("Search/Register courses"); //bingo
         btnView = new JButton("View/Drop courses");  //bingo
@@ -75,7 +73,7 @@ public class DstudentOperationMenu extends JFrame {
 
     //EFFECTS: start a single student-operation-menu window, just for test
     public static void main(String[] args) {
-        new DstudentOperationMenu(new University("Test University"),
+        new StudentOperationWindow(new University("Test University"),
                 new Student("TestStaff"));
     }
 
@@ -120,7 +118,7 @@ public class DstudentOperationMenu extends JFrame {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BStatusChoosing(uni);
+                new StatusChoosingWindow(uni);
                 setVisible(false);
             }
         });

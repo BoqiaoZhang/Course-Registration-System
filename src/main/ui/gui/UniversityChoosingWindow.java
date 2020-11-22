@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AUniversityChoosing extends JFrame implements ActionListener {
+public class UniversityChoosingWindow extends JFrame implements ActionListener {
     private University uni;
     private JLabel questionAboutUniversity;
     private JTextField txtUniversity;
@@ -15,7 +15,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
     private JButton btnExit;
 
     //EFFECTS:Create a new university-choosing window
-    public AUniversityChoosing() {
+    public UniversityChoosingWindow() {
         init();
     }
 
@@ -52,7 +52,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
 
     //EFFECTS: start a single university-choosing window, just for test
     public static void main(String[] args) {
-        new AUniversityChoosing();
+        new UniversityChoosingWindow();
     }
 
     //EFFECTS: Default method with nothing to do
@@ -73,7 +73,7 @@ public class AUniversityChoosing extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 uni = new University(txtUniversity.getText());
-                new BStatusChoosing(uni);
+                new StatusChoosingWindow(uni);
                 setVisible(false);
             }
         });

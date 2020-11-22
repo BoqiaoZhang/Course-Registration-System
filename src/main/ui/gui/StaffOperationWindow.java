@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class DstaffOperationMenu extends JFrame {
+public class StaffOperationWindow extends JFrame {
     private UniversityStaff staff;
     private University uni;
     private JsonWriter universityJsonWriter;
@@ -29,7 +29,7 @@ public class DstaffOperationMenu extends JFrame {
     private JButton btnExit; //bingo (without new window, just simple shutting down)
 
     //EFFECTS:Create a new staff-operation-menu window
-    public DstaffOperationMenu(University uni, UniversityStaff staff) {
+    public StaffOperationWindow(University uni, UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
@@ -71,7 +71,7 @@ public class DstaffOperationMenu extends JFrame {
 
     //EFFECTS: start a single staff-operation-menu window, just for test
     public static void main(String[] args) {
-        new DstaffOperationMenu(new University("Test University"),
+        new StaffOperationWindow(new University("Test University"),
                 new UniversityStaff("TestStaff", 0));
     }
 
@@ -167,7 +167,7 @@ public class DstaffOperationMenu extends JFrame {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BStatusChoosing(uni);
+                new StatusChoosingWindow(uni);
                 setVisible(false);
             }
         });

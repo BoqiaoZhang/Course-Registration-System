@@ -2,7 +2,7 @@ package ui.gui.operations.staffoperations;
 
 import model.University;
 import model.UniversityStaff;
-import ui.gui.DstaffOperationMenu;
+import ui.gui.StaffOperationWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -99,7 +99,7 @@ public class StaffRemoving extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 staff.removeCourse(uni,txtCourseName.getText(),txtCourseNumber.getText());
-                new DstaffOperationMenu(uni,staff);
+                new StaffOperationWindow(uni,staff);
                 setVisible(false);
                 System.out.println(staff.viewAllCourses(uni)); //TODO: Remember to comment this line out!!!
             }
@@ -111,7 +111,7 @@ public class StaffRemoving extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new DstaffOperationMenu(uni,staff);
+                new StaffOperationWindow(uni,staff);
             }
         });
     }

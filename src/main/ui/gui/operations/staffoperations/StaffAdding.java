@@ -3,7 +3,7 @@ package ui.gui.operations.staffoperations;
 import model.Course;
 import model.University;
 import model.UniversityStaff;
-import ui.gui.DstaffOperationMenu;
+import ui.gui.StaffOperationWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -114,7 +114,7 @@ public class StaffAdding extends JFrame implements ActionListener {
                         Integer.parseInt(txtCourseNumber.getText()),
                         Integer.parseInt(txtTotalSeats.getText()));
                 staff.addNewCourse(uni,cou);
-                new DstaffOperationMenu(uni,staff);
+                new StaffOperationWindow(uni,staff);
                 setVisible(false);
                 System.out.println(staff.viewAllCourses(uni)); //TODO: Remember to comment this line out!!!
             }
@@ -126,7 +126,7 @@ public class StaffAdding extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new DstaffOperationMenu(uni,staff);
+                new StaffOperationWindow(uni,staff);
             }
         });
     }
