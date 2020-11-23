@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StudentViewing extends JFrame implements ActionListener {
+public class StudentViewingWindow extends JFrame implements ActionListener {
     private Student stu;
     private University uni;
     private JLabel instruction;
@@ -22,7 +22,7 @@ public class StudentViewing extends JFrame implements ActionListener {
     private JButton btnDrop;
 
     //EFFECTS: create a window for students' viewing and dropping operations
-    public StudentViewing(University uni, Student stu) {
+    public StudentViewingWindow(University uni, Student stu) {
         this.stu = stu;
         this.uni = uni;
         init();
@@ -73,7 +73,7 @@ public class StudentViewing extends JFrame implements ActionListener {
 
     //EFFECTS: start a single student-viewing window, just for test
     public static void main(String[] args) {
-        new StudentViewing(new University("Test University"),
+        new StudentViewingWindow(new University("Test University"),
                 new Student("TestStudent"));
     }
 
@@ -120,7 +120,7 @@ public class StudentViewing extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String courseInfo = txtDropCourse.getText();
                 stu.dropCourse(uni,courseInfo);
-                new StudentDropping(uni,stu);
+                new StudentDroppingWindow(uni,stu);
                 setVisible(false);
             }
         });

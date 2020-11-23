@@ -34,3 +34,11 @@ registered course list **(for grading please)**.
 - As a student user, I want to be able to drop a course from my registered course list.
 - As a student user, I want to be able to save my registered course list.
 - As a student user, I want to be able to load my registered course list.
+
+## Phase 4: Task 3
+The UML diagram shows that the current version of the project has a high cohesion and a high coupling. I believe the 
+following approaches can help weaken the coupling between classes:
+- For class "Staff" and class "Student", create a field of the type "University".
+- For "StaffConfirmationWindow" abstract class and "StudentConfirmationWindow", they still have duplicates. Hence, 
+creating a new abstract class "ConfirmationWindow" can help reduce the duplicates.
+- For all the class about windows, they have much duplicates. So, creating an abstract class "Window" could help.

@@ -4,10 +4,10 @@ import model.Student;
 import model.University;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.gui.operations.studentoperations.StudentLoading;
-import ui.gui.operations.studentoperations.StudentSaving;
-import ui.gui.operations.studentoperations.StudentSearching;
-import ui.gui.operations.studentoperations.StudentViewing;
+import ui.gui.operations.studentoperations.StudentLoadingWindow;
+import ui.gui.operations.studentoperations.StudentSavingWindow;
+import ui.gui.operations.studentoperations.StudentSearchingWindow;
+import ui.gui.operations.studentoperations.StudentViewingWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +83,7 @@ public class StudentOperationWindow extends JFrame {
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StudentSearching(uni,stu);
+                new StudentSearchingWindow(uni,stu);
                 setVisible(false);
             }
         });
@@ -95,7 +95,7 @@ public class StudentOperationWindow extends JFrame {
         btnView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StudentViewing(uni,stu);
+                new StudentViewingWindow(uni,stu);
                 setVisible(false);
             }
         });
@@ -137,7 +137,7 @@ public class StudentOperationWindow extends JFrame {
                     universityJsonWriter.open();
                     universityJsonWriter.write(uni);
                     universityJsonWriter.close();
-                    new StudentSaving(uni,stu);
+                    new StudentSavingWindow(uni,stu);
                     setVisible(false);
                 } catch (FileNotFoundException e1) {
                     System.out.println("Unable to write to file: " + STUDENT_JSON_STORE);
@@ -154,7 +154,7 @@ public class StudentOperationWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     stu = studentJsonReader.readStudent(uni);
-                    new StudentLoading(uni,stu);
+                    new StudentLoadingWindow(uni,stu);
                     setVisible(false);
                 } catch (IOException e3) {
                     System.out.println("Unable to read from file: " + STUDENT_JSON_STORE);

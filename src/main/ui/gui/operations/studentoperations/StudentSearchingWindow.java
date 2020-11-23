@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StudentSearching extends JFrame implements ActionListener {
+public class StudentSearchingWindow extends JFrame implements ActionListener {
     private University uni;
     private Student stu;
     private JLabel instruction;
@@ -29,7 +29,7 @@ public class StudentSearching extends JFrame implements ActionListener {
     private JButton btnRegister;
 
     //EFFECTS: create a window for students' searching, checkingSeats and registering
-    public StudentSearching(University uni, Student stu) {
+    public StudentSearchingWindow(University uni, Student stu) {
         this.uni = uni;
         this.stu = stu;
         init();
@@ -113,7 +113,7 @@ public class StudentSearching extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 stu.registerCourse(uni,txtSearch.getText());
-                new StudentRegistering(uni,stu);
+                new StudentRegisteringWindow(uni,stu);
                 setVisible(false);
             }
         });
@@ -200,7 +200,7 @@ public class StudentSearching extends JFrame implements ActionListener {
 
     //EFFECTS: start a single student-searching window, just for test
     public static void main(String[] args) {
-        new StudentSearching(new University("Test University"),
+        new StudentSearchingWindow(new University("Test University"),
                 new Student("TestStudent"));
     }
 }
