@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffViewing extends JFrame implements ActionListener {
+public class StaffViewingWindow extends JFrame implements ActionListener {
     private UniversityStaff staff;
     private University uni;
     private JLabel instruction;
@@ -16,7 +16,7 @@ public class StaffViewing extends JFrame implements ActionListener {
     private JButton btnOK;
 
     //EFFECTS: create a new window for staff-viewing operation
-    public StaffViewing(University uni,UniversityStaff staff) {
+    public StaffViewingWindow(University uni, UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
@@ -54,7 +54,7 @@ public class StaffViewing extends JFrame implements ActionListener {
 
     //EFFECTS: create a single staff-loading window just for test
     public static void main(String[] args) {
-        new StaffViewing(new University("Test University"),
+        new StaffViewingWindow(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
     }
 

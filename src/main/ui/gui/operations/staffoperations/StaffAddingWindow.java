@@ -1,5 +1,6 @@
 package ui.gui.operations.staffoperations;
 
+import model.Course;
 import model.University;
 import model.UniversityStaff;
 import ui.gui.StaffOperationWindow;
@@ -8,35 +9,41 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffRemoving extends JFrame implements ActionListener {
+public class StaffAddingWindow extends JFrame implements ActionListener {
     private UniversityStaff staff;
     private University uni;
+    private Course cou;
     private JLabel instruction;
     private JLabel lblCourseName;
     private JLabel lblCourseNumber;
+    private JLabel lblTotalSeats;
     private JTextField txtCourseName;
     private JTextField txtCourseNumber;
-    private JButton btnOK;
+    private JTextField txtTotalSeats;
+    private JButton btnAdd;
     private JButton btnBack;
 
-    //EFFECTS: create a new window for staff-removing operation
-    public StaffRemoving(University uni,UniversityStaff staff) {
+
+    //EFFECTS: Create a new window for staff-adding operation
+    public StaffAddingWindow(University uni, UniversityStaff staff) {
         this.staff = staff;
         this.uni = uni;
         init();
     }
 
-    //EFFECTS: a helper method, initializing all components
+    //EFFECTS: a helper method of init
     public void init() {
-        instruction = new JLabel("Please provide the following information of the course you want to remove");
+        instruction = new JLabel("Please provide the following information of the course you want to add");
         lblCourseName = new JLabel("The course name");
         lblCourseNumber = new JLabel("The course number");
+        lblTotalSeats = new JLabel("The total seats");
         txtCourseName = new JTextField(15);
         txtCourseNumber = new JTextField(15);
-        btnOK = new JButton("Remove");
+        txtTotalSeats = new JTextField(15);
+        btnAdd = new JButton("Add");
         btnBack = new JButton("Back");
 
-        btnOK.addActionListener(this);
+        btnAdd.addActionListener(this);
 
         this.setLayout(null);
 
@@ -47,26 +54,28 @@ public class StaffRemoving extends JFrame implements ActionListener {
         addComponents();
 
         setBounds(1,1,500,600);
-        setTitle("Course Removing Page");
+        setTitle("Course Adding Page");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     //EFFECTS: a helper method of init
-    //         add all components
+    //         add all components to the window
     public void addComponents() {
         add(instruction);
         add(lblCourseName);
         add(lblCourseNumber);
+        add(lblTotalSeats);
         add(txtCourseName);
         add(txtCourseNumber);
-        add(btnOK);
+        add(txtTotalSeats);
+        add(btnAdd);
         add(btnBack);
     }
 
-    //EFFECTS: create a single staff-removing window just for test
+    //EFFECTS: start a single staff-adding window, just for test
     public static void main(String[] args) {
-        new StaffRemoving(new University("Test University"),
+        new StaffAddingWindow(new University("Test University"),
                 new UniversityStaff("TestStaff",0));
     }
 
@@ -76,14 +85,17 @@ public class StaffRemoving extends JFrame implements ActionListener {
         //default
     }
 
-    //EFFECTS: set bounds for all components
+    //EFFECTS: a helper method of init
+    //         set bounds for all the components
     public void setBounds() {
         instruction.setBounds(20,20,500,20);
         lblCourseName.setBounds(20,60,150,20);
         lblCourseNumber.setBounds(20,100,150,20);
+        lblTotalSeats.setBounds(20,140,150,20);
         txtCourseName.setBounds(180,60,60,20);
         txtCourseNumber.setBounds(180,100,60,20);
-        btnOK.setBounds(20,200,60,20);
+        txtTotalSeats.setBounds(180,140,60,20);
+        btnAdd.setBounds(20,200,60,20);
         btnBack.setBounds(100,200,60,20);
     }
 
@@ -93,12 +105,15 @@ public class StaffRemoving extends JFrame implements ActionListener {
         addListenerForBackBtn();
     }
 
-    //EFFECTS: add listener for "Remove" button.
+    //EFFECTS: add listener for "add" button.
     public void addListenerForAddButton() {
-        btnOK.addActionListener(new ActionListener() {
+        btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                staff.removeCourse(uni,txtCourseName.getText(),txtCourseNumber.getText());
+                cou = new Course(txtCourseName.getText(),
+                        Integer.parseInt(txtCourseNumber.getText()),
+                        Integer.parseInt(txtTotalSeats.getText()));
+                staff.addNewCourse(uni,cou);
                 new StaffOperationWindow(uni,staff);
                 setVisible(false);
                 System.out.println(staff.viewAllCourses(uni)); //TODO: Remember to comment this line out!!!
@@ -106,6 +121,7 @@ public class StaffRemoving extends JFrame implements ActionListener {
         });
     }
 
+    //EFFECTS: when clicking Back button, go back to the staffOperationWindow
     public void addListenerForBackBtn() {
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -116,3 +132,4 @@ public class StaffRemoving extends JFrame implements ActionListener {
         });
     }
 }
+

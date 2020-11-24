@@ -35,6 +35,13 @@ registered course list **(for grading please)**.
 - As a student user, I want to be able to save my registered course list.
 - As a student user, I want to be able to load my registered course list.
 
+##Phase 4: Task 2
+I chose the second option (hierarchy). The StaffConfirmationWindow class inside ui-gui-operations-staffoperations
+package is an abstract class. This abstract class has the following subclasses: StaffSavingWindow and 
+StaffLoadingWindow. These subclasses both override two methods. Similarly, inside ui-gui-operations-staffoperations 
+package, the StudentConfirmationWindow class is an abstract class which has four subclasses: StudentDroppingWindow,
+StudentRegisteringWindow, StudentSavingWindow and StudentLoadingWindow. 
+
 ## Phase 4: Task 3
 The UML diagram shows that the current version of the project has a high cohesion and a high coupling. I believe the 
 following approaches can help weaken the coupling between classes:

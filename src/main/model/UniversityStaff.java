@@ -6,6 +6,7 @@ public class UniversityStaff {
     private String name;              //The name of the staff
     private int staffNumber;          //The unique staff number of the staff
 
+    //EFFECTS: construct a universityStaff with its name and staffNumber
     public UniversityStaff(String name, int staffNum) {
         this.name = name;
         this.staffNumber = staffNum;
@@ -28,6 +29,7 @@ public class UniversityStaff {
         courseList.removeIf(c -> (c.getCourseName().equals(name)) && (Integer.parseInt(num) == c.getCourseNumber()));
     }
 
+    //EFFECTS: return a string showing all the courses in the university course list
     public String viewAllCourses(University uni) {
         ArrayList<Course> courseList = uni.getUniversityCourseList();
         if (courseList.size() == 0) {

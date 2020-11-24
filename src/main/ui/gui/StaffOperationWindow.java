@@ -19,14 +19,13 @@ public class StaffOperationWindow extends JFrame {
     private JsonWriter universityJsonWriter;
     private JsonReader universityJsonReader;
     private static final String UNIVERSITY_JSON_STORE = "./data/UBC.json";
-    //private static final String STUDENT_JSON_STORE = "./data/Student.json";
-    private JButton btnAdd;  //bingo
-    private JButton btnRemove; //bingo
-    private JButton btnView; //bingo
-    private JButton btnSave; //bingo
-    private JButton btnLoad; //bingo
-    private JButton btnBack; //bingo
-    private JButton btnExit; //bingo (without new window, just simple shutting down)
+    private JButton btnAdd;
+    private JButton btnRemove;
+    private JButton btnView;
+    private JButton btnSave;
+    private JButton btnLoad;
+    private JButton btnBack;
+    private JButton btnExit;
 
     //EFFECTS:Create a new staff-operation-menu window
     public StaffOperationWindow(University uni, UniversityStaff staff) {
@@ -82,7 +81,7 @@ public class StaffOperationWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new StaffAdding(uni, staff);
+                new StaffAddingWindow(uni, staff);
             }
         });
     }
@@ -94,7 +93,7 @@ public class StaffOperationWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new StaffRemoving(uni, staff);
+                new StaffRemovingWindow(uni, staff);
             }
         });
     }
@@ -106,7 +105,7 @@ public class StaffOperationWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new StaffViewing(uni, staff);
+                new StaffViewingWindow(uni, staff);
             }
         });
     }
@@ -123,7 +122,7 @@ public class StaffOperationWindow extends JFrame {
                     universityJsonWriter.close();
                     System.out.println("Saved the course list of " + uni.getUniversityName());
                     setVisible(false);
-                    new StaffSaving(uni, staff);
+                    new StaffSavingWindow(uni, staff);
                 } catch (FileNotFoundException e1) {
                     System.out.println("Unable to write to file: " + UNIVERSITY_JSON_STORE);
                 }
@@ -141,7 +140,7 @@ public class StaffOperationWindow extends JFrame {
                     uni = universityJsonReader.readUniversity();
                     System.out.println("Loaded " + uni.getUniversityName() + " from " + UNIVERSITY_JSON_STORE);
                     setVisible(false);
-                    new StaffLoading(uni, staff);
+                    new StaffLoadingWindow(uni, staff);
                 } catch (IOException e1) {
                     System.out.println("Unable to write to file: " + UNIVERSITY_JSON_STORE);
                 }

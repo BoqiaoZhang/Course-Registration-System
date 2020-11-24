@@ -85,7 +85,9 @@ public abstract class StaffConfirmationWindow extends JFrame implements ActionLi
         });
     }
 
+    //EFFECTS: abstract method to set the title
     public abstract void setTextForTitle();
 
+    //EFFECTS: abstract method to set the text of our successfulSentence
     public abstract void setTextForSuccessSentence();
 }

@@ -18,11 +18,13 @@ public class StudentRegisteringWindow extends StudentConfirmationWindow {
                 new Student("TestStudent"));
     }
 
+    //EFFECTS: set the title to the String below
     @Override
     public void setTextForTitle() {
         setTitle("Success Registration Confirmation Window");
     }
 
+    //EFFECTS: set the text of the successfulSentence
     @Override
     public void setTextForSuccessfulSentence() {
         successfulSentence.setText("Successfully registered");

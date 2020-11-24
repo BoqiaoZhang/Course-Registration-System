@@ -12,11 +12,13 @@ public class StudentDroppingWindow extends StudentConfirmationWindow {
         super(uni,stu);
     }
 
+    //EFFECTS: set the title to the String below
     @Override
     public void setTextForTitle() {
         setTitle("Success Dropping Confirmation Window");
     }
 
+    //EFFECTS: set the text of the successfulSentence
     @Override
     public void setTextForSuccessfulSentence() {
         successfulSentence.setText("Successfully dropped");

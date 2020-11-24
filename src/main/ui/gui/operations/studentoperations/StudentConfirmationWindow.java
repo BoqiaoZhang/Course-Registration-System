@@ -58,12 +58,6 @@ public abstract class StudentConfirmationWindow extends JFrame implements Action
         add(btnOK);
     }
 
-    /*//EFFECTS: start a single student-saving window, just for test
-    public static void main(String[] args) {
-        new SuccessConfirmationWindow(new University("Test University"),
-                new Student("TestStaff"));
-    }*/
-
     //EFFECTS: default method doing nothing
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -94,8 +88,10 @@ public abstract class StudentConfirmationWindow extends JFrame implements Action
         });
     }
 
+    //EFFECTS: abstract method to set the title
     public abstract void setTextForTitle();
 
+    //EFFECTS: abstract method to set the text of our successfulSentence
     public abstract void setTextForSuccessfulSentence();
 }
 

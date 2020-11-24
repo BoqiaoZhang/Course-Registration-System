@@ -16,11 +16,13 @@ public class StudentSavingWindow extends StudentConfirmationWindow {
                 new Student("TestStaff"));
     }
 
+    //EFFECTS: set the title to the String below
     @Override
     public void setTextForTitle() {
         setTitle("Successful Saving Confirmation Page");
     }
 
+    //EFFECTS: set the text of the successfulSentence
     @Override
     public void setTextForSuccessfulSentence() {
         successfulSentence.setText("Successfully saved");

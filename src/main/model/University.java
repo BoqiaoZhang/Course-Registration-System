@@ -39,7 +39,7 @@ public class University implements Writable {
         this.universityCourseList.remove(c);
     }
 
-    //EFFECTS"returns a University as a jasonObject
+    //EFFECTS: returns a University as a jasonObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
