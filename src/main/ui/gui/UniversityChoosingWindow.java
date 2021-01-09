@@ -68,6 +68,7 @@ public class UniversityChoosingWindow extends JFrame implements ActionListener {
         btnOK.setBounds(60,100,60,20);
         btnExit.setBounds(125,100,60,20);
 
+
         btnOK.addActionListener(new ActionListener() {
             //EFFECTS: go to the statusChoosing window and close this window
             @Override
